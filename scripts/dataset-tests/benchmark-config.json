@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "campaign": {
+    "name": "gpt-oss-20b-dataset-v1",
+    "description": "RTX 4090 practical-deployment comparison: llama.cpp GGUF versus vLLM Hugging Face",
+    "seed": 42,
+    "duration_seconds": 300,
+    "warmup_seconds": 30,
+    "profile_runs": 3,
+    "unstable_profile_runs": 5,
+    "confidence_level": 0.95,
+    "profile_run_cooldown_seconds": 30,
+    "p99_min_samples": 1000,
+    "max_error_rate_pct": 1.0,
+    "throughput_cv_limit": 0.10,
+    "p95_ttft_cv_limit": 0.15,
+    "gpu_idle_utilization_pct": 5,
+    "gpu_idle_stable_seconds": 30,
+    "gpu_idle_timeout_seconds": 900,
+    "aiperf_version": "0.12.0",
+    "aiperf_commit": "03c9c6ddc5e6227782e53ded177f1227d332af48"
+  },
+  "backends": {
+    "llama-cpp": {
+      "url": "http://127.0.0.1:8080",
+      "model": "openai/gpt-oss-20b",
+      "tokenizer": "~/.cache/huggingface/hub/models--openai--gpt-oss-20b/snapshots/6cee5e81ee83917806bbde320786a8fb61efebee",
+      "api_key": "EMPTY",
+      "max_model_len": 65536,
+      "max_concurrency": 16,
+      "deployment": "GPT-OSS-20B MXFP4 GGUF, context=65536 unified shared KV, parallel slots=16"
+    },
+    "vllm": {
+      "url": "http://127.0.0.1:18000",
+      "model": "gpt-oss-20b",
+      "tokenizer": "~/.cache/huggingface/hub/models--openai--gpt-oss-20b/snapshots/6cee5e81ee83917806bbde320786a8fb61efebee",
+      "api_key": "EMPTY",
+      "max_model_len": 65536,
+      "max_concurrency": 64,
+      "server_max_num_seqs": 16,
+      "deployment": "GPT-OSS-20B HF revision 6cee5e81, max-model-len=65536, max-num-seqs=16; client load up to concurrency=64"
+    }
+  },
+  "slo": {
+    "chat": {"ttft_ms": 1000, "itl_ms": 50},
+    "rag": {"ttft_ms": 2000, "itl_ms": 50},
+    "long_context": {"ttft_ms": 5000, "itl_ms": 75}
+  },
+  "datasets": {
+    "sharegpt_fixed": "datasets/prepared/sharegpt/sharegpt-fixed-128.jsonl",
+    "sharegpt_natural": "datasets/prepared/sharegpt/sharegpt-natural-osl.jsonl",
+    "rag_pattern": "datasets/prepared/rag/{dataset}-{bucket}.jsonl",
+    "prefix_pattern": "datasets/prepared/prefix/squad-prefix-{bucket}-{cache_mode}.jsonl",
+    "ruler_pattern": "datasets/prepared/ruler/ruler-{bucket}.jsonl"
+  },
+  "matrix": {
+    "sharegpt_closed": {
+      "concurrency": [1, 2, 4, 8, 16],
+      "vllm_stress_concurrency": [32, 64],
+      "output_tokens": 128
+    },
+    "sharegpt_open": {
+      "request_rate": [0.5, 1, 2, 4, 8],
+      "concurrency": 16,
+      "vllm_stress_request_rate": [16, 32],
+      "vllm_stress_concurrency": 64,
+      "arrival_pattern": "poisson",
+      "output_tokens": 128
+    },
+    "sharegpt_natural": {
+      "request_rate": 4,
+      "concurrency": 16,
+      "vllm_stress_request_rate": [8, 16],
+      "vllm_stress_concurrency": 64,
+      "arrival_pattern": "poisson"
+    },
+    "rag": {
+      "dataset": ["squad", "hotpotqa"],
+      "bucket_tokens": [1024, 4096, 8192, 16384],
+      "concurrency": [1, 8],
+      "vllm_stress_concurrency": [16, 32],
+      "output_tokens": 256
+    },
+    "prefix": {
+      "bucket_tokens": [4096, 16384],
+      "cache_mode": ["off", "on"],
+      "concurrency": [1, 8],
+      "vllm_stress_concurrency": [16],
+      "output_tokens": 128
+    },
+    "ruler_performance": {
+      "bucket_tokens": [4096, 8192, 16384, 32768, 61440],
+      "concurrency": [1, 2],
+      "vllm_stress_concurrency_by_bucket": {
+        "4096": [8, 16, 32],
+        "8192": [8, 16],
+        "16384": [4, 8],
+        "32768": [4],
+        "61440": []
+      },
+      "output_tokens": 128
+    },
+    "ruler_accuracy": {
+      "branch": "rulerv1-ns",
+      "revision": "e8bbff677ca2c239640dc90f93310dcf32408c93",
+      "generator_revision": "c3f5e3b4f87f97e048793bb510a3a6b19a46bf3a",
+      "nemo_skills_revision": "f4a3fd8e524acd9abd1fea4387e8f179f6d51cf3",
+      "lengths": [4096, 8192, 16384, 32768],
+      "tasks": 13,
+      "samples_per_task": 100,
+      "natural_eos": true
+    }
+  }
+}

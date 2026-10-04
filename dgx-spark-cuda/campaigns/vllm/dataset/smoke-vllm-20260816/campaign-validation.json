@@ -1,0 +1,38 @@
+{
+  "completed_at": "2026-08-16T05:22:41.420606+00:00",
+  "cells": [
+    {
+      "cell": {
+        "cell_id": "sharegpt-closed-c01",
+        "suite": "sharegpt_closed",
+        "workload": "sharegpt",
+        "dataset": "datasets/prepared/sharegpt/sharegpt-fixed-128.jsonl",
+        "dataset_type": "multi_turn",
+        "concurrency": 1,
+        "slo_profile": "chat",
+        "output_tokens": 128,
+        "bucket_tokens": null,
+        "request_rate": null,
+        "arrival_pattern": null,
+        "cache_mode": null,
+        "fixed_output": true,
+        "scope": "comparison",
+        "backends": [
+          "llama-cpp",
+          "vllm"
+        ]
+      },
+      "valid_repeats": 3,
+      "invalid_repeats": 0,
+      "oom_repeats": 0,
+      "output_throughput_cv": 0.00013463278721869668,
+      "p95_ttft_cv": 0.01876608171062977,
+      "unstable": false,
+      "request_count": 303.0,
+      "p99_eligible": false,
+      "status": "valid"
+    }
+  ],
+  "valid_cells": 1,
+  "total_cells": 1
+}

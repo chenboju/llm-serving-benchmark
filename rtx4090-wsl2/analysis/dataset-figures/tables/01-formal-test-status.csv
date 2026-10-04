@@ -1,0 +1,91 @@
+backend,suite,cell_id,condition,state,good_requests_pct,request_error_pct,p95_ttft_ms,p95_ttft_slo_ms,p95_itl_ms,p95_itl_slo_ms,reason
+llama.cpp,sharegpt_closed,sharegpt-closed-c01,C1,SLO pass,100,0,182.83,1000,5.467,50,
+llama.cpp,sharegpt_closed,sharegpt-closed-c02,C2,SLO pass,99.757,0,699.613,1000,12.497,50,
+llama.cpp,sharegpt_closed,sharegpt-closed-c04,C4,SLO pass,98.987,0,763.157,1000,20.68,50,
+llama.cpp,sharegpt_closed,sharegpt-closed-c08,C8,SLO pass,96.714,0,891.42,1000,32.643,50,
+llama.cpp,sharegpt_closed,sharegpt-closed-c16,C16,"valid, SLO fail",75.535,0,1310.533,1000,52.21,50,good requests 75.5% (need ≥ 95%) · P95 TTFT 1.3× the SLO · P95 ITL 1.0× the SLO
+llama.cpp,sharegpt_open,sharegpt-open-r0p5-c16,0.5 r/s,SLO pass,100,0,494.577,1000,9.663,50,
+llama.cpp,sharegpt_open,sharegpt-open-r1-c16,1 r/s,SLO pass,96.959,0,905.337,1000,19.313,50,
+llama.cpp,sharegpt_open,sharegpt-open-r2-c16,2 r/s,SLO pass,96.267,0,926.19,1000,38.153,50,
+llama.cpp,sharegpt_open,sharegpt-open-r4-c16,4 r/s,"valid, SLO fail",91.716,0,1134.03,1000,44.793,50,good requests 91.7% (need ≥ 95%) · P95 TTFT 1.1× the SLO
+llama.cpp,sharegpt_open,sharegpt-open-r8-c16,8 r/s,"valid, SLO fail",92.449,0,1107.17,1000,45.96,50,good requests 92.4% (need ≥ 95%) · P95 TTFT 1.1× the SLO
+llama.cpp,sharegpt_natural,sharegpt-natural-r4-c16,4 r/s C16,no valid result,,1.467,,1000,,50,1.5% request errors
+llama.cpp,rag,rag-squad-b001k-c01,SQuAD 1K C1,SLO pass,100,0,241.757,2000,5.633,50,
+llama.cpp,rag,rag-squad-b001k-c08,SQuAD 1K C8,SLO pass,97.206,0,1180.823,2000,46.047,50,
+llama.cpp,rag,rag-squad-b004k-c01,SQuAD 4K C1,SLO pass,100,0,1038.293,2000,6.907,50,
+llama.cpp,rag,rag-squad-b004k-c08,SQuAD 4K C8,"valid, SLO fail",4.647,0,3273.45,2000,94.12,50,good requests 4.6% (need ≥ 95%) · P95 TTFT 1.6× the SLO · P95 ITL 1.9× the SLO
+llama.cpp,rag,rag-squad-b008k-c01,SQuAD 8K C1,SLO pass,99.383,0,1800.413,2000,6.83,50,
+llama.cpp,rag,rag-squad-b008k-c08,SQuAD 8K C8,no valid result,,25,,2000,,50,25% request errors
+llama.cpp,rag,rag-squad-b016k-c01,SQuAD 16K C1,"valid, SLO fail",0,0,3435.56,2000,6.733,50,good requests 0.0% (need ≥ 95%) · P95 TTFT 1.7× the SLO
+llama.cpp,rag,rag-squad-b016k-c08,SQuAD 16K C8,no valid result,,62.5,,2000,,50,62% request errors
+llama.cpp,rag,rag-hotpotqa-b001k-c01,HotpotQA 1K C1,SLO pass,100,0,241.593,2000,5.55,50,
+llama.cpp,rag,rag-hotpotqa-b001k-c08,HotpotQA 1K C8,SLO pass,96.656,0,1149.52,2000,46,50,
+llama.cpp,rag,rag-hotpotqa-b004k-c01,HotpotQA 4K C1,SLO pass,100,0,1013.717,2000,6.73,50,
+llama.cpp,rag,rag-hotpotqa-b004k-c08,HotpotQA 4K C8,"valid, SLO fail",5.574,0,3324.23,2000,89.593,50,good requests 5.6% (need ≥ 95%) · P95 TTFT 1.7× the SLO · P95 ITL 1.8× the SLO
+llama.cpp,rag,rag-hotpotqa-b008k-c01,HotpotQA 8K C1,SLO pass,99.387,0,1797.3,2000,6.693,50,
+llama.cpp,rag,rag-hotpotqa-b008k-c08,HotpotQA 8K C8,no valid result,,25,,2000,,50,25% request errors
+llama.cpp,rag,rag-hotpotqa-b016k-c01,HotpotQA 16K C1,"valid, SLO fail",0,0,3379.013,2000,6.603,50,good requests 0.0% (need ≥ 95%) · P95 TTFT 1.7× the SLO
+llama.cpp,rag,rag-hotpotqa-b016k-c08,HotpotQA 16K C8,no valid result,,62.5,,2000,,50,62% request errors
+llama.cpp,prefix,prefix-b004k-off-c01,4K cache off C1,SLO pass,100,0,947.92,2000,6.86,50,
+llama.cpp,prefix,prefix-b004k-off-c08,4K cache off C8,"valid, SLO fail",1.832,0,3524.687,2000,106.763,50,good requests 1.8% (need ≥ 95%) · P95 TTFT 1.8× the SLO · P95 ITL 2.1× the SLO
+llama.cpp,prefix,prefix-b004k-on-c01,4K cache on C1,"valid, SLO fail",91.329,0,2448.93,2000,7.03,50,good requests 91.3% (need ≥ 95%) · P95 TTFT 1.2× the SLO
+llama.cpp,prefix,prefix-b004k-on-c08,4K cache on C8,"valid, SLO fail",19.614,0,6163.8,2000,163.038,50,good requests 19.6% (need ≥ 95%) · P95 TTFT 3.1× the SLO · P95 ITL 3.3× the SLO
+llama.cpp,prefix,prefix-b016k-off-c01,16K cache off C1,"valid, SLO fail",0,0,3499.627,2000,6.667,50,good requests 0.0% (need ≥ 95%) · P95 TTFT 1.7× the SLO
+llama.cpp,prefix,prefix-b016k-off-c08,16K cache off C8,no valid result,,62.5,,2000,,50,62% request errors
+llama.cpp,prefix,prefix-b016k-on-c01,16K cache on C1,"valid, SLO fail",74.71,0,3520.923,2000,6.653,50,good requests 74.7% (need ≥ 95%) · P95 TTFT 1.8× the SLO
+llama.cpp,prefix,prefix-b016k-on-c08,16K cache on C8,no valid result,,62.5,,2000,,50,62% request errors
+llama.cpp,ruler_performance,ruler-perf-b004k-c01,4K C1,SLO pass,100,0,901.967,5000,6.8,75,
+llama.cpp,ruler_performance,ruler-perf-b004k-c02,4K C2,SLO pass,100,0,1878.287,5000,20.637,75,
+llama.cpp,ruler_performance,ruler-perf-b008k-c01,8K C1,SLO pass,100,0,1726.663,5000,6.797,75,
+llama.cpp,ruler_performance,ruler-perf-b008k-c02,8K C2,SLO pass,100,0,3884.94,5000,15.55,75,
+llama.cpp,ruler_performance,ruler-perf-b016k-c01,16K C1,SLO pass,100,0,3486.53,5000,6.757,75,
+llama.cpp,ruler_performance,ruler-perf-b016k-c02,16K C2,"valid, SLO fail",0.465,0,6153.347,5000,22.117,75,good requests 0.5% (need ≥ 95%) · P95 TTFT 1.2× the SLO
+llama.cpp,ruler_performance,ruler-perf-b032k-c01,32K C1,"valid, SLO fail",0,0,6694.833,5000,6.777,75,good requests 0.0% (need ≥ 95%) · P95 TTFT 1.3× the SLO
+llama.cpp,ruler_performance,ruler-perf-b032k-c02,32K C2,"valid, SLO fail",0,0,13698.79,5000,46.13,75,good requests 0.0% (need ≥ 95%) · P95 TTFT 2.7× the SLO
+llama.cpp,ruler_performance,ruler-perf-b060k-c01,60K C1,"valid, SLO fail",0,0,12560.25,5000,6.687,75,good requests 0.0% (need ≥ 95%) · P95 TTFT 2.5× the SLO
+llama.cpp,ruler_performance,ruler-perf-b060k-c02,60K C2,no valid result,,,,5000,,75,run failed (non-zero exit code)
+vLLM,sharegpt_closed,sharegpt-closed-c01,C1,SLO pass,100,0,90.567,1000,5.163,50,
+vLLM,sharegpt_closed,sharegpt-closed-c02,C2,SLO pass,100,0,124.963,1000,6.657,50,
+vLLM,sharegpt_closed,sharegpt-closed-c04,C4,SLO pass,100,0,153.74,1000,8.913,50,
+vLLM,sharegpt_closed,sharegpt-closed-c08,C8,SLO pass,100,0,238.003,1000,11.36,50,
+vLLM,sharegpt_closed,sharegpt-closed-c16,C16,SLO pass,99.987,0,337.19,1000,14.67,50,
+vLLM,sharegpt_open,sharegpt-open-r0p5-c16,0.5 r/s,SLO pass,100,0,332.27,1000,7.317,50,
+vLLM,sharegpt_open,sharegpt-open-r1-c16,1 r/s,SLO pass,100,0,217.81,1000,8.547,50,
+vLLM,sharegpt_open,sharegpt-open-r2-c16,2 r/s,SLO pass,100,0,104.33,1000,10.057,50,
+vLLM,sharegpt_open,sharegpt-open-r4-c16,4 r/s,SLO pass,99.971,0,125.72,1000,13.06,50,
+vLLM,sharegpt_open,sharegpt-open-r8-c16,8 r/s,SLO pass,100,0,158.11,1000,15.007,50,
+vLLM,sharegpt_natural,sharegpt-natural-r4-c16,4 r/s C16,SLO pass,99.381,0.1,165.553,1000,15.503,50,
+vLLM,rag,rag-squad-b001k-c01,SQuAD 1K C1,SLO pass,100,0,89.197,2000,5.13,50,
+vLLM,rag,rag-squad-b001k-c08,SQuAD 1K C8,SLO pass,100,0,383.543,2000,11.463,50,
+vLLM,rag,rag-squad-b004k-c01,SQuAD 4K C1,SLO pass,100,0,275.07,2000,5.26,50,
+vLLM,rag,rag-squad-b004k-c08,SQuAD 4K C8,SLO pass,100,0,944.233,2000,16.1,50,
+vLLM,rag,rag-squad-b008k-c01,SQuAD 8K C1,SLO pass,100,0,562.913,2000,5.44,50,
+vLLM,rag,rag-squad-b008k-c08,SQuAD 8K C8,SLO pass,98.256,0,1334.243,2000,24.017,50,
+vLLM,rag,rag-squad-b016k-c01,SQuAD 16K C1,SLO pass,100,0,1286.347,2000,5.76,50,
+vLLM,rag,rag-squad-b016k-c08,SQuAD 16K C8,"valid, SLO fail",25.179,0,2363.96,2000,43.637,50,good requests 25.2% (need ≥ 95%) · P95 TTFT 1.2× the SLO
+vLLM,rag,rag-hotpotqa-b001k-c01,HotpotQA 1K C1,SLO pass,100,0,88.76,2000,5.13,50,
+vLLM,rag,rag-hotpotqa-b001k-c08,HotpotQA 1K C8,SLO pass,100,0,383.547,2000,11.313,50,
+vLLM,rag,rag-hotpotqa-b004k-c01,HotpotQA 4K C1,SLO pass,100,0,274.933,2000,5.26,50,
+vLLM,rag,rag-hotpotqa-b004k-c08,HotpotQA 4K C8,SLO pass,100,0,944.803,2000,15.927,50,
+vLLM,rag,rag-hotpotqa-b008k-c01,HotpotQA 8K C1,SLO pass,100,0,563.57,2000,5.44,50,
+vLLM,rag,rag-hotpotqa-b008k-c08,HotpotQA 8K C8,SLO pass,98.256,0,1335.373,2000,23.877,50,
+vLLM,rag,rag-hotpotqa-b016k-c01,HotpotQA 16K C1,SLO pass,100,0,1288.483,2000,5.77,50,
+vLLM,rag,rag-hotpotqa-b016k-c08,HotpotQA 16K C8,"valid, SLO fail",25.134,0,2362.983,2000,43.503,50,good requests 25.1% (need ≥ 95%) · P95 TTFT 1.2× the SLO
+vLLM,prefix,prefix-b004k-off-c01,4K cache off C1,SLO pass,100,0,276.09,2000,5.27,50,
+vLLM,prefix,prefix-b004k-off-c08,4K cache off C8,SLO pass,99.956,0,954.643,2000,20.887,50,
+vLLM,prefix,prefix-b004k-on-c01,4K cache on C1,SLO pass,100,0,256.533,2000,5.217,50,
+vLLM,prefix,prefix-b004k-on-c08,4K cache on C8,SLO pass,100,0,817.527,2000,20.027,50,
+vLLM,prefix,prefix-b016k-off-c01,16K cache off C1,SLO pass,100,0,1303.303,2000,5.767,50,
+vLLM,prefix,prefix-b016k-off-c08,16K cache off C8,"valid, SLO fail",0.463,0,2382.153,2000,73.743,50,good requests 0.5% (need ≥ 95%) · P95 TTFT 1.2× the SLO · P95 ITL 1.5× the SLO
+vLLM,prefix,prefix-b016k-on-c01,16K cache on C1,SLO pass,100,0,1265.713,2000,5.707,50,
+vLLM,prefix,prefix-b016k-on-c08,16K cache on C8,"valid, SLO fail",0.769,0,2462.107,2000,73.72,50,good requests 0.8% (need ≥ 95%) · P95 TTFT 1.2× the SLO · P95 ITL 1.5× the SLO
+vLLM,ruler_performance,ruler-perf-b004k-c01,4K C1,SLO pass,100,0,254.25,5000,5.213,75,
+vLLM,ruler_performance,ruler-perf-b004k-c02,4K C2,SLO pass,100,0,481.227,5000,6.783,75,
+vLLM,ruler_performance,ruler-perf-b008k-c01,8K C1,SLO pass,100,0,538.66,5000,5.38,75,
+vLLM,ruler_performance,ruler-perf-b008k-c02,8K C2,SLO pass,100,0,933.687,5000,7.947,75,
+vLLM,ruler_performance,ruler-perf-b016k-c01,16K C1,SLO pass,100,0,1251.237,5000,5.7,75,
+vLLM,ruler_performance,ruler-perf-b016k-c02,16K C2,SLO pass,100,0,1942.943,5000,13.73,75,
+vLLM,ruler_performance,ruler-perf-b032k-c01,32K C1,SLO pass,100,0,3275.373,5000,6.31,75,
+vLLM,ruler_performance,ruler-perf-b032k-c02,32K C2,SLO pass,98.765,0,4605.013,5000,29.987,75,
+vLLM,ruler_performance,ruler-perf-b060k-c01,60K C1,"valid, SLO fail",0,0,8709.247,5000,7.347,75,good requests 0.0% (need ≥ 95%) · P95 TTFT 1.7× the SLO
+vLLM,ruler_performance,ruler-perf-b060k-c02,60K C2,"valid, SLO fail",0,0,11464.557,5000,73.59,75,good requests 0.0% (need ≥ 95%) · P95 TTFT 2.3× the SLO

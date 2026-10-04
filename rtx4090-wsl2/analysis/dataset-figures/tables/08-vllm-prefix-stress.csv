@@ -1,0 +1,5 @@
+context_bucket,cache_mode,prompt_computed_tokens_per_s,prompt_reused_tokens_per_s,generation_tokens_per_s,running_mean,running_max,waiting_mean,waiting_max,kv_usage_mean_pct,kv_usage_max_pct,prefix_hit_rate_pct
+4K,off,12623.322,0,386.628,15.178,16,0.085,14,22.621,24.402,
+4K,on,6149.31,18626.147,761.741,15.463,16,0.086,15,30.07,32.524,75.18
+16K,off,12652.344,0,98.346,15.149,16,0.487,15,82.883,89.966,
+16K,on,12403.198,3.761,96.532,12.473,13,3.17,15,91.79,98.554,0.03

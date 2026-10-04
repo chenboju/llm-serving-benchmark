@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+*.local
+
+# Editors and operating systems
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*~
+
+# Temporary and backup files
+*.tmp
+*.bak
+*.bak-*
+*.orig
+
+# Models and downloaded datasets are not repository artifacts
+models/
+datasets/raw/
+datasets/prepared/
+datasets/ruler-work/
+
+# Full benchmark outputs are retained locally and published as release assets.
+results/**
+!results/README.md
+!results/generated-summary.md
+
+# Optional local release bundles
+dist/
+release-assets/
+

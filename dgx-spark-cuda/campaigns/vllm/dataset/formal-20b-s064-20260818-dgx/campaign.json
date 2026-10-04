@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "campaign_id": "formal-20b-s064-20260818-dgx",
+  "started_at": "2026-08-19T03:58:42.719440+00:00",
+  "backend": "vllm",
+  "backend_config": {
+    "url": "http://127.0.0.1:18000",
+    "model": "gpt-oss-20b",
+    "tokenizer": "/home/<user>/.cache/huggingface/hub/models--openai--gpt-oss-20b/snapshots/6cee5e81ee83917806bbde320786a8fb61efebee",
+    "api_key": "EMPTY",
+    "max_model_len": 65536,
+    "max_concurrency": 64,
+    "server_max_num_seqs": 16,
+    "deployment": "vllm/vllm-openai@sha256:928dde7d6c19478c9c6ab975fed12e6466f6d9b7cb3695d218e287c0c88ad608 (linux/arm64, tag nightly pulled 2026-08-07, vLLM 0.26.1rc1.dev457+gc810e5ee9, build commit c810e5ee9976ad86b81d1277b53e76d0ee639414); GPT-OSS-20B HF revision 6cee5e81, quantization gpt_oss_mxfp4 via MARLIN MoE backend, TRITON_ATTN; max-model-len=65536, max-num-seqs=16; gpu-memory-utilization=0.70 on 121.7 GiB unified memory, measured KV pool 68.01 GiB / 2790787 tokens (max concurrency 42.58x at 65536) so this host never preempts at the comparison matrix's concurrency<=16, unlike the 24 GB RTX 4090; harmony tokenizer needs o200k_base.tiktoken mounted at TIKTOKEN_ENCODINGS_BASE or chat completions fail with HTTP 500; client load up to concurrency=64",
+    "_url_note": "Host port. The RTX 4090 campaign published the container's 8000 on host 18000; keep that mapping or change this URL to match whatever the DGX container publishes.",
+    "_memory_note": "--gpu-memory-utilization is a fraction of the memory vLLM sees. On GB10 that pool is unified LPDDR5X shared with the host, so the same 0.90 that was safe on a 24 GB discrete 4090 reserves a far larger absolute amount here and starves the OS. Choose it deliberately and record the value in the report."
+  },
+  "llama_server_config": null,
+  "campaign_config": {
+    "name": "gpt-oss-20b-dataset-v1-dgx",
+    "description": "DGX Spark (GB10 Grace Blackwell, ARM64) llama.cpp vs vLLM A/B; shares the RTX 4090 matrix, seed, durations and stability limits so both backends stay comparable across hardware",
+    "seed": 42,
+    "duration_seconds": 300,
+    "warmup_seconds": 30,
+    "profile_runs": 3,
+    "unstable_profile_runs": 5,
+    "confidence_level": 0.95,
+    "profile_run_cooldown_seconds": 30,
+    "p99_min_samples": 1000,
+    "max_error_rate_pct": 1.0,
+    "throughput_cv_limit": 0.1,
+    "p95_ttft_cv_limit": 0.15,
+    "gpu_idle_utilization_pct": 12,
+    "_gpu_idle_utilization_pct_note": "RTX 4090 reference used 5. Raised to 12 on DGX Spark: this host runs a graphical desktop (gnome-remote-desktop-daemon holds the GPU) and an idle vLLM EngineCore still polls, so measured idle utilisation floors at 7-8% and the strict '< threshold' test at line 160 of run_benchmarks.py could never pass. Working utilisation is 94%, so 12 still separates busy from idle. This gates when a run may start; it does not affect what is measured.",
+    "gpu_idle_stable_seconds": 30,
+    "gpu_idle_timeout_seconds": 900,
+    "gpu_idle_fallback_cooldown_seconds": 60,
+    "aiperf_version": "0.12.0",
+    "aiperf_commit": "03c9c6ddc5e6227782e53ded177f1227d332af48"
+  },
+  "required_prefix_cache_mode": "off",
+  "host": {
+    "platform": "linux",
+    "machine": "aarch64",
+    "telemetry_backend": "nvidia-smi"
+  },
+  "environment_manifest": {
+    "path": "/home/<user>/LLM_infra/dgx-spark-cuda/datasets/manifests/environment.json",
+    "sha256": "112fbbdadafe3d983255894c02a75a96ed4c60b859acb5052e626655d22ea10c"
+  },
+  "selected_cells": [
+    "sharegpt-closed-c01",
+    "sharegpt-closed-c02",
+    "sharegpt-closed-c04",
+    "sharegpt-closed-c08",
+    "sharegpt-closed-c16",
+    "sharegpt-closed-c32",
+    "sharegpt-closed-c64"
+  ],
+  "selected_scopes": [
+    "comparison",
+    "vllm_stress"
+  ],
+  "dataset_sha256": {
+    "datasets/prepared/sharegpt/sharegpt-fixed-128.jsonl": "73f3dee1c18b28af09253d6effb73dfa3b7cdade28eace8dc4b63ebb1c2db33d"
+  },
+  "gpu": "Wed Aug 19 12:01:04 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 580.142                Driver Version: 580.142        CUDA Version: 13.0     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA GB10                    On  |   0000000F:01:00.0  On |                  N/A |\n| N/A   50C    P0             12W /  N/A  | Not Supported          |      5%      Default |\n|                                         |                        |                  N/A |\n+-----------------------------------------+------------------------+----------------------+\n\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|    0   N/A  N/A            5530      G   /usr/lib/xorg/Xorg                      201MiB |\n|    0   N/A  N/A            5603    C+G   ...c/gnome-remote-desktop-daemon        176MiB |\n|    0   N/A  N/A            5683      G   /usr/bin/gnome-shell                    243MiB |\n|    0   N/A  N/A            6209      G   ...exec/xdg-desktop-portal-gnome         29MiB |\n|    0   N/A  N/A            7397      G   /usr/bin/nautilus                        42MiB |\n|    0   N/A  N/A            7676      G   ...88185955192 --disable-logging         94MiB |\n|    0   N/A  N/A          331615      G   .../teamviewer/tv_bin/TeamViewer         26MiB |\n|    0   N/A  N/A          344080      G   /usr/share/code/code                     64MiB |\n|    0   N/A  N/A          357884      G   ...rack-uuid=3190708992871164437        158MiB |\n|    0   N/A  N/A          371732      C   VLLM::EngineCore                      70086MiB |\n+-----------------------------------------------------------------------------------------+",
+  "aiperf_revision": "03c9c6ddc5e6227782e53ded177f1227d332af48",
+  "invocations": [
+    {
+      "started_at": "2026-08-19T03:58:42.782568+00:00",
+      "selected_cells": [
+        "sharegpt-closed-c01",
+        "sharegpt-closed-c02",
+        "sharegpt-closed-c04",
+        "sharegpt-closed-c08",
+        "sharegpt-closed-c16",
+        "sharegpt-closed-c32",
+        "sharegpt-closed-c64"
+      ],
+      "selected_scopes": [
+        "comparison",
+        "vllm_stress"
+      ],
+      "dry_run": false,
+      "required_prefix_cache_mode": "off",
+      "managed_llama_server": false,
+      "llama_server_command": null,
+      "vllm_container_command": "[\"openai/gpt-oss-20b\",\"--served-model-name\",\"gpt-oss-20b\",\"--host\",\"0.0.0.0\",\"--port\",\"8000\",\"--gpu-memory-utilization\",\"0.7\",\"--max-model-len\",\"65536\",\"--max-num-seqs\",\"64\",\"--no-enable-prefix-caching\"]"
+    },
+    {
+      "started_at": "2026-08-19T04:01:04.948713+00:00",
+      "selected_cells": [
+        "sharegpt-closed-c01",
+        "sharegpt-closed-c02",
+        "sharegpt-closed-c04",
+        "sharegpt-closed-c08",
+        "sharegpt-closed-c16",
+        "sharegpt-closed-c32",
+        "sharegpt-closed-c64"
+      ],
+      "selected_scopes": [
+        "comparison",
+        "vllm_stress"
+      ],
+      "dry_run": false,
+      "required_prefix_cache_mode": "off",
+      "managed_llama_server": false,
+      "llama_server_command": null,
+      "vllm_container_command": "[\"openai/gpt-oss-20b\",\"--served-model-name\",\"gpt-oss-20b\",\"--host\",\"0.0.0.0\",\"--port\",\"8000\",\"--gpu-memory-utilization\",\"0.7\",\"--max-model-len\",\"65536\",\"--max-num-seqs\",\"64\",\"--no-enable-prefix-caching\"]"
+    }
+  ],
+  "preflight": {
+    "smoke_requests": 10,
+    "model_ids": [
+      "gpt-oss-20b"
+    ],
+    "completed_at": "2026-08-19T04:01:06.453175+00:00"
+  }
+}

@@ -1,0 +1,13 @@
+backend,scope,target_rate_per_s,completed_rate_per_s,output_tokens_per_s,p95_ttft_ms,good_requests_pct,slo_pass
+llama.cpp,comparison,0.5,0.527,65.377,494.577,100,True
+llama.cpp,comparison,1,0.97,121.37,905.337,96.959,True
+llama.cpp,comparison,2,1.967,246.887,926.19,96.267,True
+llama.cpp,comparison,4,2.68,337.263,1134.03,91.716,False
+llama.cpp,comparison,8,2.887,361.783,1107.17,92.449,False
+vLLM,comparison,0.5,0.51,65.567,332.27,100,True
+vLLM,comparison,1,0.95,121.553,217.81,100,True
+vLLM,comparison,2,1.97,252.543,104.33,100,True
+vLLM,comparison,4,3.84,491.377,125.72,99.971,True
+vLLM,comparison,8,6.63,848.45,158.11,100,True
+vLLM,vllm_stress,16,8.22,1051.77,6093.713,1.211,False
+vLLM,vllm_stress,32,8.267,1058.113,6139.947,0.629,False

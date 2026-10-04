@@ -1,0 +1,907 @@
+{
+  "completed_at": "2026-08-17T13:35:18.383437+00:00",
+  "cells": [
+    {
+      "cell": {
+        "cell_id": "sharegpt-closed-c32",
+        "suite": "sharegpt_closed",
+        "workload": "sharegpt",
+        "dataset": "datasets/prepared/sharegpt/sharegpt-fixed-128.jsonl",
+        "dataset_type": "multi_turn",
+        "concurrency": 32,
+        "slo_profile": "chat",
+        "output_tokens": 128,
+        "bucket_tokens": null,
+        "request_rate": null,
+        "arrival_pattern": null,
+        "cache_mode": null,
+        "fixed_output": true,
+        "scope": "vllm_stress",
+        "backends": [
+          "vllm"
+        ]
+      },
+      "valid_repeats": 3,
+      "invalid_repeats": 0,
+      "oom_repeats": 0,
+      "output_throughput_cv": 0.002940326198398339,
+      "p95_ttft_cv": 0.006906522933656018,
+      "unstable": false,
+      "request_count": 2304.0,
+      "p99_eligible": true,
+      "status": "valid"
+    },
+    {
+      "cell": {
+        "cell_id": "sharegpt-closed-c64",
+        "suite": "sharegpt_closed",
+        "workload": "sharegpt",
+        "dataset": "datasets/prepared/sharegpt/sharegpt-fixed-128.jsonl",
+        "dataset_type": "multi_turn",
+        "concurrency": 64,
+        "slo_profile": "chat",
+        "output_tokens": 128,
+        "bucket_tokens": null,
+        "request_rate": null,
+        "arrival_pattern": null,
+        "cache_mode": null,
+        "fixed_output": true,
+        "scope": "vllm_stress",
+        "backends": [
+          "vllm"
+        ]
+      },
+      "valid_repeats": 3,
+      "invalid_repeats": 0,
+      "oom_repeats": 0,
+      "output_throughput_cv": 0.001020888165027273,
+      "p95_ttft_cv": 0.003310406794478163,
+      "unstable": false,
+      "request_count": 2400.0,
+      "p99_eligible": true,
+      "status": "valid"
+    },
+    {
+      "cell": {
+        "cell_id": "sharegpt-open-r16-c64",
+        "suite": "sharegpt_open",
+        "workload": "sharegpt",
+        "dataset": "datasets/prepared/sharegpt/sharegpt-fixed-128.jsonl",
+        "dataset_type": "multi_turn",
+        "concurrency": 64,
+        "slo_profile": "chat",
+        "output_tokens": 128,
+        "bucket_tokens": null,
+        "request_rate": 16.0,
+        "arrival_pattern": "poisson",
+        "cache_mode": null,
+        "fixed_output": true,
+        "scope": "vllm_stress",
+        "backends": [
+          "vllm"
+        ]
+      },
+      "valid_repeats": 3,
+      "invalid_repeats": 0,
+      "oom_repeats": 0,
+      "output_throughput_cv": 0.002693084543618349,
+      "p95_ttft_cv": 0.0014049424064038701,
+      "unstable": false,
+      "request_count": 2357.0,
+      "p99_eligible": true,
+      "status": "valid"
+    },
+    {
+      "cell": {
+        "cell_id": "sharegpt-open-r32-c64",
+        "suite": "sharegpt_open",
+        "workload": "sharegpt",
+        "dataset": "datasets/prepared/sharegpt/sharegpt-fixed-128.jsonl",
+        "dataset_type": "multi_turn",
+        "concurrency": 64,
+        "slo_profile": "chat",
+        "output_tokens": 128,
+        "bucket_tokens": null,
+        "request_rate": 32.0,
+        "arrival_pattern": "poisson",
+        "cache_mode": null,
+        "fixed_output": true,
+        "scope": "vllm_stress",
+        "backends": [
+          "vllm"
+        ]
+      },
+      "valid_repeats": 3,
+      "invalid_repeats": 0,
+      "oom_repeats": 0,
+      "output_throughput_cv": 0.0009795465475074528,
+      "p95_ttft_cv": 0.007051063906374494,
+      "unstable": false,
+      "request_count": 2400.0,
+      "p99_eligible": true,
+      "status": "valid"
+    },
+    {
+      "cell": {
+        "cell_id": "sharegpt-natural-r8-c64",
+        "suite": "sharegpt_natural",
+        "workload": "sharegpt",
+        "dataset": "datasets/prepared/sharegpt/sharegpt-natural-osl.jsonl",
+        "dataset_type": "multi_turn",
+        "concurrency": 64,
+        "slo_profile": "chat",
+        "output_tokens": null,
+        "bucket_tokens": null,
+        "request_rate": 8.0,
+        "arrival_pattern": "poisson",
+        "cache_mode": null,
+        "fixed_output": false,
+        "scope": "vllm_stress",
+        "backends": [
+          "vllm"
+        ]
+      },
+      "valid_repeats": 3,
+      "invalid_repeats": 0,
+      "oom_repeats": 0,
+      "output_throughput_cv": 0.013471998110725074,
+      "p95_ttft_cv": 0.01646539218140986,
+      "unstable": false,
+      "request_count": 1119.0,
+      "p99_eligible": true,
+      "status": "valid"
+    },
+    {
+      "cell": {
+        "cell_id": "sharegpt-natural-r16-c64",
+        "suite": "sharegpt_natural",
+        "workload": "sharegpt",
+        "dataset": "datasets/prepared/sharegpt/sharegpt-natural-osl.jsonl",
+        "dataset_type": "multi_turn",
+        "concurrency": 64,
+        "slo_profile": "chat",
+        "output_tokens": null,
+        "bucket_tokens": null,
+        "request_rate": 16.0,
+        "arrival_pattern": "poisson",
+        "cache_mode": null,
+        "fixed_output": false,
+        "scope": "vllm_stress",
+        "backends": [
+          "vllm"
+        ]
+      },
+      "valid_repeats": 3,
+      "invalid_repeats": 0,
+      "oom_repeats": 0,
+      "output_throughput_cv": 0.0035991949361747506,
+      "p95_ttft_cv": 0.01817703975599101,
+      "unstable": false,
+      "request_count": 1112.0,
+      "p99_eligible": true,
+      "status": "valid"
+    },
+    {
+      "cell": {
+        "cell_id": "rag-squad-b001k-c16",
+        "suite": "rag",
+        "workload": "rag",
+        "dataset": "datasets/prepared/rag/squad-1024.jsonl",
+        "dataset_type": "single_turn",
+        "concurrency": 16,
+        "slo_profile": "rag",
+        "output_tokens": 256,
+        "bucket_tokens": 1024,
+        "request_rate": null,
+        "arrival_pattern": null,
+        "cache_mode": null,
+        "fixed_output": true,
+        "scope": "vllm_stress",
+        "backends": [
+          "vllm"
+        ]
+      },
+      "valid_repeats": 3,
+      "invalid_repeats": 0,
+      "oom_repeats": 0,
+      "output_throughput_cv": 0.0009580267823549999,
+      "p95_ttft_cv": 0.0014182338724229831,
+      "unstable": false,
+      "request_count": 1056.0,
+      "p99_eligible": true,
+      "status": "valid"
+    },
+    {
+      "cell": {
+        "cell_id": "rag-squad-b001k-c32",
+        "suite": "rag",
+        "workload": "rag",
+        "dataset": "datasets/prepared/rag/squad-1024.jsonl",
+        "dataset_type": "single_turn",
+        "concurrency": 32,
+        "slo_profile": "rag",
+        "output_tokens": 256,
+        "bucket_tokens": 1024,
+        "request_rate": null,
+        "arrival_pattern": null,
+        "cache_mode": null,
+        "fixed_output": true,
+        "scope": "vllm_stress",
+        "backends": [
+          "vllm"
+        ]
+      },
+      "valid_repeats": 3,
+      "invalid_repeats": 0,
+      "oom_repeats": 0,
+      "output_throughput_cv": 0.007464916661972885,
+      "p95_ttft_cv": 0.0014305653082150043,
+      "unstable": false,
+      "request_count": 1109.0,
+      "p99_eligible": true,
+      "status": "valid"
+    },
+    {
+      "cell": {
+        "cell_id": "rag-squad-b004k-c16",
+        "suite": "rag",
+        "workload": "rag",
+        "dataset": "datasets/prepared/rag/squad-4096.jsonl",
+        "dataset_type": "single_turn",
+        "concurrency": 16,
+        "slo_profile": "rag",
+        "output_tokens": 256,
+        "bucket_tokens": 4096,
+        "request_rate": null,
+        "arrival_pattern": null,
+        "cache_mode": null,
+        "fixed_output": true,
+        "scope": "vllm_stress",
+        "backends": [
+          "vllm"
+        ]
+      },
+      "valid_repeats": 3,
+      "invalid_repeats": 0,
+      "oom_repeats": 0,
+      "output_throughput_cv": 0.0015490045884153677,
+      "p95_ttft_cv": 0.007981294323576209,
+      "unstable": false,
+      "request_count": 692.0,
+      "p99_eligible": false,
+      "status": "valid"
+    },
+    {
+      "cell": {
+        "cell_id": "rag-squad-b004k-c32",
+        "suite": "rag",
+        "workload": "rag",
+        "dataset": "datasets/prepared/rag/squad-4096.jsonl",
+        "dataset_type": "single_turn",
+        "concurrency": 32,
+        "slo_profile": "rag",
+        "output_tokens": 256,
+        "bucket_tokens": 4096,
+        "request_rate": null,
+        "arrival_pattern": null,
+        "cache_mode": null,
+        "fixed_output": true,
+        "scope": "vllm_stress",
+        "backends": [
+          "vllm"
+        ]
+      },
+      "valid_repeats": 3,
+      "invalid_repeats": 0,
+      "oom_repeats": 0,
+      "output_throughput_cv": 0.0,
+      "p95_ttft_cv": 0.004808520756507224,
+      "unstable": false,
+      "request_count": 720.0,
+      "p99_eligible": false,
+      "status": "valid"
+    },
+    {
+      "cell": {
+        "cell_id": "rag-squad-b008k-c16",
+        "suite": "rag",
+        "workload": "rag",
+        "dataset": "datasets/prepared/rag/squad-8192.jsonl",
+        "dataset_type": "single_turn",
+        "concurrency": 16,
+        "slo_profile": "rag",
+        "output_tokens": 256,
+        "bucket_tokens": 8192,
+        "request_rate": null,
+        "arrival_pattern": null,
+        "cache_mode": null,
+        "fixed_output": true,
+        "scope": "vllm_stress",
+        "backends": [
+          "vllm"
+        ]
+      },
+      "valid_repeats": 3,
+      "invalid_repeats": 0,
+      "oom_repeats": 0,
+      "output_throughput_cv": 0.0004260188917526301,
+      "p95_ttft_cv": 0.018741108698003515,
+      "unstable": false,
+      "request_count": 445.0,
+      "p99_eligible": false,
+      "status": "valid"
+    },
+    {
+      "cell": {
+        "cell_id": "rag-squad-b008k-c32",
+        "suite": "rag",
+        "workload": "rag",
+        "dataset": "datasets/prepared/rag/squad-8192.jsonl",
+        "dataset_type": "single_turn",
+        "concurrency": 32,
+        "slo_profile": "rag",
+        "output_tokens": 256,
+        "bucket_tokens": 8192,
+        "request_rate": null,
+        "arrival_pattern": null,
+        "cache_mode": null,
+        "fixed_output": true,
+        "scope": "vllm_stress",
+        "backends": [
+          "vllm"
+        ]
+      },
+      "valid_repeats": 3,
+      "invalid_repeats": 0,
+      "oom_repeats": 0,
+      "output_throughput_cv": 0.003985249645733706,
+      "p95_ttft_cv": 0.00930989283522672,
+      "unstable": false,
+      "request_count": 437.0,
+      "p99_eligible": false,
+      "status": "valid"
+    },
+    {
+      "cell": {
+        "cell_id": "rag-squad-b016k-c16",
+        "suite": "rag",
+        "workload": "rag",
+        "dataset": "datasets/prepared/rag/squad-16384.jsonl",
+        "dataset_type": "single_turn",
+        "concurrency": 16,
+        "slo_profile": "rag",
+        "output_tokens": 256,
+        "bucket_tokens": 16384,
+        "request_rate": null,
+        "arrival_pattern": null,
+        "cache_mode": null,
+        "fixed_output": true,
+        "scope": "vllm_stress",
+        "backends": [
+          "vllm"
+        ]
+      },
+      "valid_repeats": 3,
+      "invalid_repeats": 0,
+      "oom_repeats": 0,
+      "output_throughput_cv": 0.001673426736384324,
+      "p95_ttft_cv": 0.002941269452089973,
+      "unstable": false,
+      "request_count": 240.0,
+      "p99_eligible": false,
+      "status": "valid"
+    },
+    {
+      "cell": {
+        "cell_id": "rag-squad-b016k-c32",
+        "suite": "rag",
+        "workload": "rag",
+        "dataset": "datasets/prepared/rag/squad-16384.jsonl",
+        "dataset_type": "single_turn",
+        "concurrency": 32,
+        "slo_profile": "rag",
+        "output_tokens": 256,
+        "bucket_tokens": 16384,
+        "request_rate": null,
+        "arrival_pattern": null,
+        "cache_mode": null,
+        "fixed_output": true,
+        "scope": "vllm_stress",
+        "backends": [
+          "vllm"
+        ]
+      },
+      "valid_repeats": 3,
+      "invalid_repeats": 0,
+      "oom_repeats": 0,
+      "output_throughput_cv": 0.008253907807329706,
+      "p95_ttft_cv": 0.005578573261486875,
+      "unstable": false,
+      "request_count": 211.0,
+      "p99_eligible": false,
+      "status": "valid"
+    },
+    {
+      "cell": {
+        "cell_id": "rag-hotpotqa-b001k-c16",
+        "suite": "rag",
+        "workload": "rag",
+        "dataset": "datasets/prepared/rag/hotpotqa-1024.jsonl",
+        "dataset_type": "single_turn",
+        "concurrency": 16,
+        "slo_profile": "rag",
+        "output_tokens": 256,
+        "bucket_tokens": 1024,
+        "request_rate": null,
+        "arrival_pattern": null,
+        "cache_mode": null,
+        "fixed_output": true,
+        "scope": "vllm_stress",
+        "backends": [
+          "vllm"
+        ]
+      },
+      "valid_repeats": 3,
+      "invalid_repeats": 0,
+      "oom_repeats": 0,
+      "output_throughput_cv": 0.00025762797453180174,
+      "p95_ttft_cv": 0.0009774720243200172,
+      "unstable": false,
+      "request_count": 1104.0,
+      "p99_eligible": true,
+      "status": "valid"
+    },
+    {
+      "cell": {
+        "cell_id": "rag-hotpotqa-b001k-c32",
+        "suite": "rag",
+        "workload": "rag",
+        "dataset": "datasets/prepared/rag/hotpotqa-1024.jsonl",
+        "dataset_type": "single_turn",
+        "concurrency": 32,
+        "slo_profile": "rag",
+        "output_tokens": 256,
+        "bucket_tokens": 1024,
+        "request_rate": null,
+        "arrival_pattern": null,
+        "cache_mode": null,
+        "fixed_output": true,
+        "scope": "vllm_stress",
+        "backends": [
+          "vllm"
+        ]
+      },
+      "valid_repeats": 3,
+      "invalid_repeats": 0,
+      "oom_repeats": 0,
+      "output_throughput_cv": 0.0010725503645392556,
+      "p95_ttft_cv": 0.0011385030255805768,
+      "unstable": false,
+      "request_count": 1152.0,
+      "p99_eligible": true,
+      "status": "valid"
+    },
+    {
+      "cell": {
+        "cell_id": "rag-hotpotqa-b004k-c16",
+        "suite": "rag",
+        "workload": "rag",
+        "dataset": "datasets/prepared/rag/hotpotqa-4096.jsonl",
+        "dataset_type": "single_turn",
+        "concurrency": 16,
+        "slo_profile": "rag",
+        "output_tokens": 256,
+        "bucket_tokens": 4096,
+        "request_rate": null,
+        "arrival_pattern": null,
+        "cache_mode": null,
+        "fixed_output": true,
+        "scope": "vllm_stress",
+        "backends": [
+          "vllm"
+        ]
+      },
+      "valid_repeats": 3,
+      "invalid_repeats": 0,
+      "oom_repeats": 0,
+      "output_throughput_cv": 0.0013586246538119968,
+      "p95_ttft_cv": 0.01024873743386936,
+      "unstable": false,
+      "request_count": 701.0,
+      "p99_eligible": false,
+      "status": "valid"
+    },
+    {
+      "cell": {
+        "cell_id": "rag-hotpotqa-b004k-c32",
+        "suite": "rag",
+        "workload": "rag",
+        "dataset": "datasets/prepared/rag/hotpotqa-4096.jsonl",
+        "dataset_type": "single_turn",
+        "concurrency": 32,
+        "slo_profile": "rag",
+        "output_tokens": 256,
+        "bucket_tokens": 4096,
+        "request_rate": null,
+        "arrival_pattern": null,
+        "cache_mode": null,
+        "fixed_output": true,
+        "scope": "vllm_stress",
+        "backends": [
+          "vllm"
+        ]
+      },
+      "valid_repeats": 3,
+      "invalid_repeats": 0,
+      "oom_repeats": 0,
+      "output_throughput_cv": 0.0,
+      "p95_ttft_cv": 0.003769163774022164,
+      "unstable": false,
+      "request_count": 720.0,
+      "p99_eligible": false,
+      "status": "valid"
+    },
+    {
+      "cell": {
+        "cell_id": "rag-hotpotqa-b008k-c16",
+        "suite": "rag",
+        "workload": "rag",
+        "dataset": "datasets/prepared/rag/hotpotqa-8192.jsonl",
+        "dataset_type": "single_turn",
+        "concurrency": 16,
+        "slo_profile": "rag",
+        "output_tokens": 256,
+        "bucket_tokens": 8192,
+        "request_rate": null,
+        "arrival_pattern": null,
+        "cache_mode": null,
+        "fixed_output": true,
+        "scope": "vllm_stress",
+        "backends": [
+          "vllm"
+        ]
+      },
+      "valid_repeats": 3,
+      "invalid_repeats": 0,
+      "oom_repeats": 0,
+      "output_throughput_cv": 0.0017384810532383255,
+      "p95_ttft_cv": 0.02833761249148945,
+      "unstable": false,
+      "request_count": 446.0,
+      "p99_eligible": false,
+      "status": "valid"
+    },
+    {
+      "cell": {
+        "cell_id": "rag-hotpotqa-b008k-c32",
+        "suite": "rag",
+        "workload": "rag",
+        "dataset": "datasets/prepared/rag/hotpotqa-8192.jsonl",
+        "dataset_type": "single_turn",
+        "concurrency": 32,
+        "slo_profile": "rag",
+        "output_tokens": 256,
+        "bucket_tokens": 8192,
+        "request_rate": null,
+        "arrival_pattern": null,
+        "cache_mode": null,
+        "fixed_output": true,
+        "scope": "vllm_stress",
+        "backends": [
+          "vllm"
+        ]
+      },
+      "valid_repeats": 3,
+      "invalid_repeats": 0,
+      "oom_repeats": 0,
+      "output_throughput_cv": 0.003957929424924493,
+      "p95_ttft_cv": 0.011998746601949491,
+      "unstable": false,
+      "request_count": 440.0,
+      "p99_eligible": false,
+      "status": "valid"
+    },
+    {
+      "cell": {
+        "cell_id": "rag-hotpotqa-b016k-c16",
+        "suite": "rag",
+        "workload": "rag",
+        "dataset": "datasets/prepared/rag/hotpotqa-16384.jsonl",
+        "dataset_type": "single_turn",
+        "concurrency": 16,
+        "slo_profile": "rag",
+        "output_tokens": 256,
+        "bucket_tokens": 16384,
+        "request_rate": null,
+        "arrival_pattern": null,
+        "cache_mode": null,
+        "fixed_output": true,
+        "scope": "vllm_stress",
+        "backends": [
+          "vllm"
+        ]
+      },
+      "valid_repeats": 3,
+      "invalid_repeats": 0,
+      "oom_repeats": 0,
+      "output_throughput_cv": 0.007023849573437291,
+      "p95_ttft_cv": 0.009181411348863263,
+      "unstable": false,
+      "request_count": 240.0,
+      "p99_eligible": false,
+      "status": "valid"
+    },
+    {
+      "cell": {
+        "cell_id": "rag-hotpotqa-b016k-c32",
+        "suite": "rag",
+        "workload": "rag",
+        "dataset": "datasets/prepared/rag/hotpotqa-16384.jsonl",
+        "dataset_type": "single_turn",
+        "concurrency": 32,
+        "slo_profile": "rag",
+        "output_tokens": 256,
+        "bucket_tokens": 16384,
+        "request_rate": null,
+        "arrival_pattern": null,
+        "cache_mode": null,
+        "fixed_output": true,
+        "scope": "vllm_stress",
+        "backends": [
+          "vllm"
+        ]
+      },
+      "valid_repeats": 3,
+      "invalid_repeats": 0,
+      "oom_repeats": 0,
+      "output_throughput_cv": 0.008253907807329706,
+      "p95_ttft_cv": 0.004598503266449988,
+      "unstable": false,
+      "request_count": 211.0,
+      "p99_eligible": false,
+      "status": "valid"
+    },
+    {
+      "cell": {
+        "cell_id": "ruler-perf-b004k-c08",
+        "suite": "ruler_performance",
+        "workload": "long_context",
+        "dataset": "datasets/prepared/ruler/ruler-4096.jsonl",
+        "dataset_type": "single_turn",
+        "concurrency": 8,
+        "slo_profile": "long_context",
+        "output_tokens": 128,
+        "bucket_tokens": 4096,
+        "request_rate": null,
+        "arrival_pattern": null,
+        "cache_mode": null,
+        "fixed_output": true,
+        "scope": "vllm_stress",
+        "backends": [
+          "vllm"
+        ]
+      },
+      "valid_repeats": 3,
+      "invalid_repeats": 0,
+      "oom_repeats": 0,
+      "output_throughput_cv": 0.0011776912746424356,
+      "p95_ttft_cv": 0.04175575702073602,
+      "unstable": false,
+      "request_count": 816.0,
+      "p99_eligible": false,
+      "status": "valid"
+    },
+    {
+      "cell": {
+        "cell_id": "ruler-perf-b004k-c16",
+        "suite": "ruler_performance",
+        "workload": "long_context",
+        "dataset": "datasets/prepared/ruler/ruler-4096.jsonl",
+        "dataset_type": "single_turn",
+        "concurrency": 16,
+        "slo_profile": "long_context",
+        "output_tokens": 128,
+        "bucket_tokens": 4096,
+        "request_rate": null,
+        "arrival_pattern": null,
+        "cache_mode": null,
+        "fixed_output": true,
+        "scope": "vllm_stress",
+        "backends": [
+          "vllm"
+        ]
+      },
+      "valid_repeats": 3,
+      "invalid_repeats": 0,
+      "oom_repeats": 0,
+      "output_throughput_cv": 0.0005282784038871775,
+      "p95_ttft_cv": 0.004546666515919471,
+      "unstable": false,
+      "request_count": 1056.0,
+      "p99_eligible": true,
+      "status": "valid"
+    },
+    {
+      "cell": {
+        "cell_id": "ruler-perf-b004k-c32",
+        "suite": "ruler_performance",
+        "workload": "long_context",
+        "dataset": "datasets/prepared/ruler/ruler-4096.jsonl",
+        "dataset_type": "single_turn",
+        "concurrency": 32,
+        "slo_profile": "long_context",
+        "output_tokens": 128,
+        "bucket_tokens": 4096,
+        "request_rate": null,
+        "arrival_pattern": null,
+        "cache_mode": null,
+        "fixed_output": true,
+        "scope": "vllm_stress",
+        "backends": [
+          "vllm"
+        ]
+      },
+      "valid_repeats": 3,
+      "invalid_repeats": 0,
+      "oom_repeats": 0,
+      "output_throughput_cv": 0.0005095650515613881,
+      "p95_ttft_cv": 0.003822914690136955,
+      "unstable": false,
+      "request_count": 1104.0,
+      "p99_eligible": true,
+      "status": "valid"
+    },
+    {
+      "cell": {
+        "cell_id": "ruler-perf-b008k-c08",
+        "suite": "ruler_performance",
+        "workload": "long_context",
+        "dataset": "datasets/prepared/ruler/ruler-8192.jsonl",
+        "dataset_type": "single_turn",
+        "concurrency": 8,
+        "slo_profile": "long_context",
+        "output_tokens": 128,
+        "bucket_tokens": 8192,
+        "request_rate": null,
+        "arrival_pattern": null,
+        "cache_mode": null,
+        "fixed_output": true,
+        "scope": "vllm_stress",
+        "backends": [
+          "vllm"
+        ]
+      },
+      "valid_repeats": 3,
+      "invalid_repeats": 0,
+      "oom_repeats": 0,
+      "output_throughput_cv": 0.0026370598308800538,
+      "p95_ttft_cv": 0.018830115113616045,
+      "unstable": false,
+      "request_count": 514.0,
+      "p99_eligible": false,
+      "status": "valid"
+    },
+    {
+      "cell": {
+        "cell_id": "ruler-perf-b008k-c16",
+        "suite": "ruler_performance",
+        "workload": "long_context",
+        "dataset": "datasets/prepared/ruler/ruler-8192.jsonl",
+        "dataset_type": "single_turn",
+        "concurrency": 16,
+        "slo_profile": "long_context",
+        "output_tokens": 128,
+        "bucket_tokens": 8192,
+        "request_rate": null,
+        "arrival_pattern": null,
+        "cache_mode": null,
+        "fixed_output": true,
+        "scope": "vllm_stress",
+        "backends": [
+          "vllm"
+        ]
+      },
+      "valid_repeats": 3,
+      "invalid_repeats": 0,
+      "oom_repeats": 0,
+      "output_throughput_cv": 0.0003817151187853477,
+      "p95_ttft_cv": 0.03569374685203389,
+      "unstable": false,
+      "request_count": 606.0,
+      "p99_eligible": false,
+      "status": "valid"
+    },
+    {
+      "cell": {
+        "cell_id": "ruler-perf-b016k-c04",
+        "suite": "ruler_performance",
+        "workload": "long_context",
+        "dataset": "datasets/prepared/ruler/ruler-16384.jsonl",
+        "dataset_type": "single_turn",
+        "concurrency": 4,
+        "slo_profile": "long_context",
+        "output_tokens": 128,
+        "bucket_tokens": 16384,
+        "request_rate": null,
+        "arrival_pattern": null,
+        "cache_mode": null,
+        "fixed_output": true,
+        "scope": "vllm_stress",
+        "backends": [
+          "vllm"
+        ]
+      },
+      "valid_repeats": 3,
+      "invalid_repeats": 0,
+      "oom_repeats": 0,
+      "output_throughput_cv": 0.002672514388958346,
+      "p95_ttft_cv": 0.010098649430411987,
+      "unstable": false,
+      "request_count": 224.0,
+      "p99_eligible": false,
+      "status": "valid"
+    },
+    {
+      "cell": {
+        "cell_id": "ruler-perf-b016k-c08",
+        "suite": "ruler_performance",
+        "workload": "long_context",
+        "dataset": "datasets/prepared/ruler/ruler-16384.jsonl",
+        "dataset_type": "single_turn",
+        "concurrency": 8,
+        "slo_profile": "long_context",
+        "output_tokens": 128,
+        "bucket_tokens": 16384,
+        "request_rate": null,
+        "arrival_pattern": null,
+        "cache_mode": null,
+        "fixed_output": true,
+        "scope": "vllm_stress",
+        "backends": [
+          "vllm"
+        ]
+      },
+      "valid_repeats": 3,
+      "invalid_repeats": 0,
+      "oom_repeats": 0,
+      "output_throughput_cv": 0.0009872047920028173,
+      "p95_ttft_cv": 0.009280976692174633,
+      "unstable": false,
+      "request_count": 252.0,
+      "p99_eligible": false,
+      "status": "valid"
+    },
+    {
+      "cell": {
+        "cell_id": "ruler-perf-b032k-c04",
+        "suite": "ruler_performance",
+        "workload": "long_context",
+        "dataset": "datasets/prepared/ruler/ruler-32768.jsonl",
+        "dataset_type": "single_turn",
+        "concurrency": 4,
+        "slo_profile": "long_context",
+        "output_tokens": 128,
+        "bucket_tokens": 32768,
+        "request_rate": null,
+        "arrival_pattern": null,
+        "cache_mode": null,
+        "fixed_output": true,
+        "scope": "vllm_stress",
+        "backends": [
+          "vllm"
+        ]
+      },
+      "valid_repeats": 3,
+      "invalid_repeats": 0,
+      "oom_repeats": 0,
+      "output_throughput_cv": 0.001285858060556008,
+      "p95_ttft_cv": 0.017009463233940654,
+      "unstable": false,
+      "request_count": 96.0,
+      "p99_eligible": false,
+      "status": "valid"
+    }
+  ],
+  "valid_cells": 30,
+  "total_cells": 30
+}

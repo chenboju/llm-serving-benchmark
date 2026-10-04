@@ -1,0 +1,222 @@
+{
+  "completed_at": "2026-08-19T06:12:15.492707+00:00",
+  "cells": [
+    {
+      "cell": {
+        "cell_id": "sharegpt-closed-c01",
+        "suite": "sharegpt_closed",
+        "workload": "sharegpt",
+        "dataset": "datasets/prepared/sharegpt/sharegpt-fixed-128.jsonl",
+        "dataset_type": "multi_turn",
+        "concurrency": 1,
+        "slo_profile": "chat",
+        "output_tokens": 128,
+        "bucket_tokens": null,
+        "request_rate": null,
+        "arrival_pattern": null,
+        "cache_mode": null,
+        "fixed_output": true,
+        "scope": "comparison",
+        "backends": [
+          "llama-cpp",
+          "vllm"
+        ]
+      },
+      "valid_repeats": 3,
+      "invalid_repeats": 0,
+      "oom_repeats": 0,
+      "output_throughput_cv": 0.06656531885758092,
+      "p95_ttft_cv": 0.07938651634519506,
+      "unstable": false,
+      "request_count": 299.0,
+      "p99_eligible": false,
+      "status": "valid"
+    },
+    {
+      "cell": {
+        "cell_id": "sharegpt-closed-c02",
+        "suite": "sharegpt_closed",
+        "workload": "sharegpt",
+        "dataset": "datasets/prepared/sharegpt/sharegpt-fixed-128.jsonl",
+        "dataset_type": "multi_turn",
+        "concurrency": 2,
+        "slo_profile": "chat",
+        "output_tokens": 128,
+        "bucket_tokens": null,
+        "request_rate": null,
+        "arrival_pattern": null,
+        "cache_mode": null,
+        "fixed_output": true,
+        "scope": "comparison",
+        "backends": [
+          "llama-cpp",
+          "vllm"
+        ]
+      },
+      "valid_repeats": 3,
+      "invalid_repeats": 0,
+      "oom_repeats": 0,
+      "output_throughput_cv": 0.0006175889328063768,
+      "p95_ttft_cv": 0.004721933225088005,
+      "unstable": false,
+      "request_count": 570.0,
+      "p99_eligible": false,
+      "status": "valid"
+    },
+    {
+      "cell": {
+        "cell_id": "sharegpt-closed-c04",
+        "suite": "sharegpt_closed",
+        "workload": "sharegpt",
+        "dataset": "datasets/prepared/sharegpt/sharegpt-fixed-128.jsonl",
+        "dataset_type": "multi_turn",
+        "concurrency": 4,
+        "slo_profile": "chat",
+        "output_tokens": 128,
+        "bucket_tokens": null,
+        "request_rate": null,
+        "arrival_pattern": null,
+        "cache_mode": null,
+        "fixed_output": true,
+        "scope": "comparison",
+        "backends": [
+          "llama-cpp",
+          "vllm"
+        ]
+      },
+      "valid_repeats": 3,
+      "invalid_repeats": 0,
+      "oom_repeats": 0,
+      "output_throughput_cv": 7.998720204765646e-05,
+      "p95_ttft_cv": 0.018324234180881933,
+      "unstable": false,
+      "request_count": 888.0,
+      "p99_eligible": false,
+      "status": "valid"
+    },
+    {
+      "cell": {
+        "cell_id": "sharegpt-closed-c08",
+        "suite": "sharegpt_closed",
+        "workload": "sharegpt",
+        "dataset": "datasets/prepared/sharegpt/sharegpt-fixed-128.jsonl",
+        "dataset_type": "multi_turn",
+        "concurrency": 8,
+        "slo_profile": "chat",
+        "output_tokens": 128,
+        "bucket_tokens": null,
+        "request_rate": null,
+        "arrival_pattern": null,
+        "cache_mode": null,
+        "fixed_output": true,
+        "scope": "comparison",
+        "backends": [
+          "llama-cpp",
+          "vllm"
+        ]
+      },
+      "valid_repeats": 3,
+      "invalid_repeats": 0,
+      "oom_repeats": 0,
+      "output_throughput_cv": 0.004785652993296038,
+      "p95_ttft_cv": 0.017873433398443446,
+      "unstable": false,
+      "request_count": 1369.0,
+      "p99_eligible": true,
+      "status": "valid"
+    },
+    {
+      "cell": {
+        "cell_id": "sharegpt-closed-c16",
+        "suite": "sharegpt_closed",
+        "workload": "sharegpt",
+        "dataset": "datasets/prepared/sharegpt/sharegpt-fixed-128.jsonl",
+        "dataset_type": "multi_turn",
+        "concurrency": 16,
+        "slo_profile": "chat",
+        "output_tokens": 128,
+        "bucket_tokens": null,
+        "request_rate": null,
+        "arrival_pattern": null,
+        "cache_mode": null,
+        "fixed_output": true,
+        "scope": "comparison",
+        "backends": [
+          "llama-cpp",
+          "vllm"
+        ]
+      },
+      "valid_repeats": 3,
+      "invalid_repeats": 0,
+      "oom_repeats": 0,
+      "output_throughput_cv": 0.004620169907850143,
+      "p95_ttft_cv": 0.030693366378363268,
+      "unstable": false,
+      "request_count": 2202.0,
+      "p99_eligible": true,
+      "status": "valid"
+    },
+    {
+      "cell": {
+        "cell_id": "sharegpt-closed-c32",
+        "suite": "sharegpt_closed",
+        "workload": "sharegpt",
+        "dataset": "datasets/prepared/sharegpt/sharegpt-fixed-128.jsonl",
+        "dataset_type": "multi_turn",
+        "concurrency": 32,
+        "slo_profile": "chat",
+        "output_tokens": 128,
+        "bucket_tokens": null,
+        "request_rate": null,
+        "arrival_pattern": null,
+        "cache_mode": null,
+        "fixed_output": true,
+        "scope": "vllm_stress",
+        "backends": [
+          "vllm"
+        ]
+      },
+      "valid_repeats": 3,
+      "invalid_repeats": 0,
+      "oom_repeats": 0,
+      "output_throughput_cv": 0.0035197027210388727,
+      "p95_ttft_cv": 0.005385684876491976,
+      "unstable": false,
+      "request_count": 3515.0,
+      "p99_eligible": true,
+      "status": "valid"
+    },
+    {
+      "cell": {
+        "cell_id": "sharegpt-closed-c64",
+        "suite": "sharegpt_closed",
+        "workload": "sharegpt",
+        "dataset": "datasets/prepared/sharegpt/sharegpt-fixed-128.jsonl",
+        "dataset_type": "multi_turn",
+        "concurrency": 64,
+        "slo_profile": "chat",
+        "output_tokens": 128,
+        "bucket_tokens": null,
+        "request_rate": null,
+        "arrival_pattern": null,
+        "cache_mode": null,
+        "fixed_output": true,
+        "scope": "vllm_stress",
+        "backends": [
+          "vllm"
+        ]
+      },
+      "valid_repeats": 3,
+      "invalid_repeats": 0,
+      "oom_repeats": 0,
+      "output_throughput_cv": 0.0016761001096790604,
+      "p95_ttft_cv": 0.012325940550027437,
+      "unstable": false,
+      "request_count": 5568.0,
+      "p99_eligible": true,
+      "status": "valid"
+    }
+  ],
+  "valid_cells": 7,
+  "total_cells": 7
+}

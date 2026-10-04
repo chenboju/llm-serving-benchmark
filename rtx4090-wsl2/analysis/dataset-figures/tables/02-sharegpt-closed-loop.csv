@@ -1,0 +1,11 @@
+backend,concurrency,output_tokens_per_s,p95_ttft_ms,p95_itl_ms,good_requests_pct,slo_pass
+llama.cpp,1,167.747,182.83,5.467,100,True
+llama.cpp,2,171.45,699.613,12.497,99.757,True
+llama.cpp,4,218.967,763.157,20.68,98.987,True
+llama.cpp,8,265.63,891.42,32.643,96.714,True
+llama.cpp,16,343.83,1310.533,52.21,75.535,False
+vLLM,1,184.967,90.567,5.163,100,True
+vLLM,2,282.313,124.963,6.657,100,True
+vLLM,4,439.34,153.74,8.913,100,True
+vLLM,8,678.883,238.003,11.36,100,True
+vLLM,16,1056.883,337.19,14.67,99.987,True

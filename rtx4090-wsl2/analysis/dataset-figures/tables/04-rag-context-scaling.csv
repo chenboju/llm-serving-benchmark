@@ -1,0 +1,33 @@
+dataset,backend,concurrency,context_bucket,valid,output_tokens_per_s,p95_ttft_ms,good_requests_pct,request_error_pct,reason
+HotpotQA,llama.cpp,1,1K,True,146.7,241.593,100,0,
+HotpotQA,llama.cpp,1,4K,True,78.133,1013.717,100,0,
+HotpotQA,llama.cpp,1,8K,True,57.12,1797.3,99.387,0,
+HotpotQA,llama.cpp,1,16K,True,37.39,3379.013,0,0,
+HotpotQA,llama.cpp,8,1K,True,189.927,1149.52,96.656,0,
+HotpotQA,llama.cpp,8,4K,True,97.413,3324.23,5.574,0,
+HotpotQA,llama.cpp,8,8K,False,,,,25,25% request errors
+HotpotQA,llama.cpp,8,16K,False,,,,62.5,62% request errors
+HotpotQA,vLLM,1,1K,True,183.567,88.76,100,0,
+HotpotQA,vLLM,1,4K,True,158.557,274.933,100,0,
+HotpotQA,vLLM,1,8K,True,131.407,563.57,100,0,
+HotpotQA,vLLM,1,16K,True,92.957,1288.483,100,0,
+HotpotQA,vLLM,8,1K,True,661.157,383.547,100,0,
+HotpotQA,vLLM,8,4K,True,442.287,944.803,100,0,
+HotpotQA,vLLM,8,8K,True,292.743,1335.373,98.256,0,
+HotpotQA,vLLM,8,16K,True,157.783,2362.983,25.134,0,
+SQuAD,llama.cpp,1,1K,True,145.033,241.757,100,0,
+SQuAD,llama.cpp,1,4K,True,76.023,1038.293,100,0,
+SQuAD,llama.cpp,1,8K,True,56.04,1800.413,99.383,0,
+SQuAD,llama.cpp,1,16K,True,35.72,3435.56,0,0,
+SQuAD,llama.cpp,8,1K,True,190.723,1180.823,97.206,0,
+SQuAD,llama.cpp,8,4K,True,95.693,3273.45,4.647,0,
+SQuAD,llama.cpp,8,8K,False,,,,25,25% request errors
+SQuAD,llama.cpp,8,16K,False,,,,62.5,62% request errors
+SQuAD,vLLM,1,1K,True,183.437,89.197,100,0,
+SQuAD,vLLM,1,4K,True,158.553,275.07,100,0,
+SQuAD,vLLM,1,8K,True,131.467,562.913,100,0,
+SQuAD,vLLM,1,16K,True,93.047,1286.347,100,0,
+SQuAD,vLLM,8,1K,True,653.533,383.543,100,0,
+SQuAD,vLLM,8,4K,True,440.267,944.233,100,0,
+SQuAD,vLLM,8,8K,True,291.443,1334.243,98.256,0,
+SQuAD,vLLM,8,16K,True,157.35,2363.96,25.179,0,

@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "campaign": {
+    "name": "gpt-oss-20b-dataset-v1-dgx",
+    "description": "DGX Spark (GB10 Grace Blackwell, ARM64) llama.cpp vs vLLM A/B; shares the RTX 4090 matrix, seed, durations and stability limits so both backends stay comparable across hardware",
+    "seed": 42,
+    "duration_seconds": 300,
+    "warmup_seconds": 30,
+    "profile_runs": 3,
+    "unstable_profile_runs": 5,
+    "confidence_level": 0.95,
+    "profile_run_cooldown_seconds": 30,
+    "p99_min_samples": 1000,
+    "max_error_rate_pct": 1.0,
+    "throughput_cv_limit": 0.10,
+    "p95_ttft_cv_limit": 0.15,
+    "gpu_idle_utilization_pct": 12,
+    "_gpu_idle_utilization_pct_note": "RTX 4090 reference used 5. Raised to 12 on DGX Spark: this host runs a graphical desktop (gnome-remote-desktop-daemon holds the GPU) and an idle vLLM EngineCore still polls, so measured idle utilisation floors at 7-8% and the strict '< threshold' test at line 160 of run_benchmarks.py could never pass. Working utilisation is 94%, so 12 still separates busy from idle. This gates when a run may start; it does not affect what is measured.",
+    "gpu_idle_stable_seconds": 30,
+    "gpu_idle_timeout_seconds": 900,
+    "gpu_idle_fallback_cooldown_seconds": 60,
+    "aiperf_version": "0.12.0",
+    "aiperf_commit": "03c9c6ddc5e6227782e53ded177f1227d332af48"
+  },
+  "backends": {
+    "llama-cpp": {
+      "url": "http://127.0.0.1:8080",
+      "model": "openai/gpt-oss-20b",
+      "tokenizer": "/home/<user>/.cache/huggingface/hub/models--openai--gpt-oss-20b/snapshots/6cee5e81ee83917806bbde320786a8fb61efebee",
+      "api_key": "EMPTY",
+      "max_model_len": 65536,
+      "max_concurrency": 16,
+      "deployment": "GPT-OSS-20B MXFP4 GGUF on DGX Spark GB10, context=65536, parallel=16; llama.cpp b8407 aarch64 CUDA build recorded in llama_server.build"
+    },
+    "vllm": {
+      "url": "http://127.0.0.1:18000",
+      "model": "gpt-oss-20b",
+      "tokenizer": "/home/<user>/.cache/huggingface/hub/models--openai--gpt-oss-20b/snapshots/6cee5e81ee83917806bbde320786a8fb61efebee",
+      "api_key": "EMPTY",
+      "max_model_len": 65536,
+      "max_concurrency": 64,
+      "server_max_num_seqs": 16,
+      "deployment": "vllm/vllm-openai@sha256:928dde7d6c19478c9c6ab975fed12e6466f6d9b7cb3695d218e287c0c88ad608 (linux/arm64, tag nightly pulled 2026-08-07, vLLM 0.26.1rc1.dev457+gc810e5ee9, build commit c810e5ee9976ad86b81d1277b53e76d0ee639414); GPT-OSS-20B HF revision 6cee5e81, quantization gpt_oss_mxfp4 via MARLIN MoE backend, TRITON_ATTN; max-model-len=65536, max-num-seqs=16; gpu-memory-utilization=0.70 on 121.7 GiB unified memory, measured KV pool 68.01 GiB / 2790787 tokens (max concurrency 42.58x at 65536) so this host never preempts at the comparison matrix's concurrency<=16, unlike the 24 GB RTX 4090; harmony tokenizer needs o200k_base.tiktoken mounted at TIKTOKEN_ENCODINGS_BASE or chat completions fail with HTTP 500; client load up to concurrency=64",
+      "_url_note": "Host port. The RTX 4090 campaign published the container's 8000 on host 18000; keep that mapping or change this URL to match whatever the DGX container publishes.",
+      "_memory_note": "--gpu-memory-utilization is a fraction of the memory vLLM sees. On GB10 that pool is unified LPDDR5X shared with the host, so the same 0.90 that was safe on a 24 GB discrete 4090 reserves a far larger absolute amount here and starves the OS. Choose it deliberately and record the value in the report."
+    },
+    "vllm-120b": {
+      "url": "http://127.0.0.1:18001",
+      "model": "gpt-oss-120b",
+      "tokenizer": "/home/<user>/.cache/huggingface/hub/models--openai--gpt-oss-120b/snapshots/b5c939de8f754692c1647ca79fbf85e8c1e70f8a",
+      "api_key": "EMPTY",
+      "max_model_len": 65536,
+      "max_concurrency": 64,
+      "server_max_num_seqs": 16,
+      "cell_backend": "vllm",
+      "_cell_backend_note": "Cells are tagged with the backend family ('vllm'), not the deployment name. This key lets a second vLLM deployment select the same matrix without duplicating 79 cells. Results still land in results/vllm-120b/ because the run directory uses the deployment name.",
+      "_tokenizer_note": "tokenizer.json, tokenizer_config.json, special_tokens_map.json and chat_template.jinja are byte-identical between the 20B and 120B snapshots (verified 2026-08-18 by sha256). The prepared datasets were bucket-sliced with the 20B tokenizer and are therefore valid here without regeneration; this path points at the 120B snapshot for provenance only.",
+      "deployment": "vllm/vllm-openai@sha256:928dde7d6c19478c9c6ab975fed12e6466f6d9b7cb3695d218e287c0c88ad608 (same image as the 20B campaign); GPT-OSS-120B HF revision b5c939de, quantization mxfp4 via MARLIN MoE backend, TRITON_ATTN; max-model-len=65536, max-num-seqs set per campaign via start_vllm_120b.sh; gpu-memory-utilization=0.85 measured 33.07-35.25 GiB KV pool / 904670-964375 tokens across two identical launches, so the pool varies ~6% run to run because the unified memory is shared with a graphical desktop -- pin it with --kv-cache-memory before the formal campaign. The reported 'maximum concurrency 13.80x' is 904670/65536 and only binds on full-length requests; the whole 79-cell matrix fits, the heaviest cell being rag-*-b016k-c32 at ~532K tokens. Weights+non-torch 66.68 GiB, cold load ~9.7 min.",
+      "_url_note": "start_vllm_120b.sh publishes the container's 8000 on host 18001 so it cannot be confused with the 20B deployment on 18000. The DFlash variant uses 18002."
+    }
+  },
+  "llama_server": {
+    "_comment": "Flags were hardcoded in the RTX 4090 harness. They are config-driven here so the aarch64 CUDA build's actual capabilities can be probed and the values used end up in the run manifest. Run probe_llama_server.sh first.",
+    "build": "b8407 (312cf0332) aarch64 CUDA sm_121, GNU 13.3.0, CUDA 13.0, driver 580.142; probe 2026-08-16: flash-attn on / kv-unified / cache-prompt all OK, ctx=65536 parallel=16 boot ok",
+    "_build_values": "Record what the aarch64 CUDA build reports, e.g. 'b8407 aarch64 CUDA sm_121'. Confirm the arch with: nvidia-smi --query-gpu=compute_cap --format=csv,noheader",
+    "n_gpu_layers": 99,
+    "ctx_size": 65536,
+    "parallel": 16,
+    "kv_unified": true,
+    "flash_attn": "on",
+    "_flash_attn_values": "on | off | auto | unset (unset omits the flag entirely). The RTX 4090 campaign used 'on'; keep it unless the probe shows the aarch64 build rejects it.",
+    "extra_args": [],
+    "startup_timeout_seconds": 900
+  },
+  "slo": {
+    "chat": {"ttft_ms": 1000, "itl_ms": 50},
+    "rag": {"ttft_ms": 2000, "itl_ms": 50},
+    "long_context": {"ttft_ms": 5000, "itl_ms": 75}
+  },
+  "datasets": {
+    "sharegpt_fixed": "datasets/prepared/sharegpt/sharegpt-fixed-128.jsonl",
+    "sharegpt_natural": "datasets/prepared/sharegpt/sharegpt-natural-osl.jsonl",
+    "rag_pattern": "datasets/prepared/rag/{dataset}-{bucket}.jsonl",
+    "prefix_pattern": "datasets/prepared/prefix/squad-prefix-{bucket}-{cache_mode}.jsonl",
+    "ruler_pattern": "datasets/prepared/ruler/ruler-{bucket}.jsonl"
+  },
+  "matrix": {
+    "sharegpt_closed": {
+      "concurrency": [1, 2, 4, 8, 16],
+      "vllm_stress_concurrency": [32, 64],
+      "output_tokens": 128
+    },
+    "sharegpt_open": {
+      "request_rate": [0.5, 1, 2, 4, 8],
+      "concurrency": 16,
+      "vllm_stress_request_rate": [16, 32],
+      "vllm_stress_concurrency": 64,
+      "arrival_pattern": "poisson",
+      "output_tokens": 128
+    },
+    "sharegpt_natural": {
+      "request_rate": 4,
+      "concurrency": 16,
+      "vllm_stress_request_rate": [8, 16],
+      "vllm_stress_concurrency": 64,
+      "arrival_pattern": "poisson"
+    },
+    "rag": {
+      "dataset": ["squad", "hotpotqa"],
+      "bucket_tokens": [1024, 4096, 8192, 16384],
+      "concurrency": [1, 8],
+      "vllm_stress_concurrency": [16, 32],
+      "output_tokens": 256
+    },
+    "prefix": {
+      "bucket_tokens": [4096, 16384],
+      "cache_mode": ["off", "on"],
+      "concurrency": [1, 8],
+      "vllm_stress_concurrency": [16],
+      "output_tokens": 128
+    },
+    "ruler_performance": {
+      "bucket_tokens": [4096, 8192, 16384, 32768, 61440],
+      "concurrency": [1, 2],
+      "vllm_stress_concurrency_by_bucket": {
+        "4096": [8, 16, 32],
+        "8192": [8, 16],
+        "16384": [4, 8],
+        "32768": [4],
+        "61440": []
+      },
+      "output_tokens": 128
+    },
+    "ruler_accuracy": {
+      "branch": "rulerv1-ns",
+      "revision": "e8bbff677ca2c239640dc90f93310dcf32408c93",
+      "generator_revision": "c3f5e3b4f87f97e048793bb510a3a6b19a46bf3a",
+      "nemo_skills_revision": "f4a3fd8e524acd9abd1fea4387e8f179f6d51cf3",
+      "lengths": [4096, 8192, 16384, 32768],
+      "tasks": 13,
+      "samples_per_task": 100,
+      "natural_eos": true
+    }
+  }
+}

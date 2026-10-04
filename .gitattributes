@@ -1,0 +1,16 @@
+* text=auto whitespace=-blank-at-eof
+*.sh text eol=lf
+*.py text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.jsonl text eol=lf
+*.csv text eol=lf
+*.ps1 text eol=crlf
+*.png binary
+*.svg binary
+*.gguf binary
+*.safetensors binary
+
+# Generated and prose files may intentionally contain trailing spaces for
+# SVG path formatting or Markdown hard line breaks.
+*.md whitespace=-trailing-space,-blank-at-eof

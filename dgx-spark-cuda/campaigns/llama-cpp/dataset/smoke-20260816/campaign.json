@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "campaign_id": "smoke-20260816",
+  "started_at": "2026-08-16T02:10:23.624894+00:00",
+  "backend": "llama-cpp",
+  "backend_config": {
+    "url": "http://127.0.0.1:8080",
+    "model": "openai/gpt-oss-20b",
+    "tokenizer": "/home/<user>/.cache/huggingface/hub/models--openai--gpt-oss-20b/snapshots/6cee5e81ee83917806bbde320786a8fb61efebee",
+    "api_key": "EMPTY",
+    "max_model_len": 65536,
+    "max_concurrency": 16,
+    "deployment": "GPT-OSS-20B MXFP4 GGUF on DGX Spark GB10, context=65536, parallel=16; llama.cpp b8407 aarch64 CUDA build recorded in llama_server.build"
+  },
+  "llama_server_config": {
+    "_comment": "Flags were hardcoded in the RTX 4090 harness. They are config-driven here so the aarch64 CUDA build's actual capabilities can be probed and the values used end up in the run manifest. Run probe_llama_server.sh first.",
+    "build": "b8407 (312cf0332) aarch64 CUDA sm_121, GNU 13.3.0, CUDA 13.0, driver 580.142; probe 2026-08-16: flash-attn on / kv-unified / cache-prompt all OK, ctx=65536 parallel=16 boot ok",
+    "_build_values": "Record what the aarch64 CUDA build reports, e.g. 'b8407 aarch64 CUDA sm_121'. Confirm the arch with: nvidia-smi --query-gpu=compute_cap --format=csv,noheader",
+    "n_gpu_layers": 99,
+    "ctx_size": 65536,
+    "parallel": 16,
+    "kv_unified": true,
+    "flash_attn": "on",
+    "_flash_attn_values": "on | off | auto | unset (unset omits the flag entirely). The RTX 4090 campaign used 'on'; keep it unless the probe shows the aarch64 build rejects it.",
+    "extra_args": [],
+    "startup_timeout_seconds": 900
+  },
+  "campaign_config": {
+    "name": "gpt-oss-20b-dataset-v1-dgx",
+    "description": "DGX Spark (GB10 Grace Blackwell, ARM64) llama.cpp vs vLLM A/B; shares the RTX 4090 matrix, seed, durations and stability limits so both backends stay comparable across hardware",
+    "seed": 42,
+    "duration_seconds": 300,
+    "warmup_seconds": 30,
+    "profile_runs": 3,
+    "unstable_profile_runs": 5,
+    "confidence_level": 0.95,
+    "profile_run_cooldown_seconds": 30,
+    "p99_min_samples": 1000,
+    "max_error_rate_pct": 1.0,
+    "throughput_cv_limit": 0.1,
+    "p95_ttft_cv_limit": 0.15,
+    "gpu_idle_utilization_pct": 5,
+    "gpu_idle_stable_seconds": 30,
+    "gpu_idle_timeout_seconds": 900,
+    "gpu_idle_fallback_cooldown_seconds": 60,
+    "aiperf_version": "0.12.0",
+    "aiperf_commit": "03c9c6ddc5e6227782e53ded177f1227d332af48"
+  },
+  "required_prefix_cache_mode": "off",
+  "host": {
+    "platform": "linux",
+    "machine": "aarch64",
+    "telemetry_backend": "nvidia-smi"
+  },
+  "environment_manifest": {
+    "path": "/home/<user>/LLM_infra/dgx-spark-cuda/datasets/manifests/environment.json",
+    "sha256": "78c39f674757bad2c86859290dc16c2dcb357c567e653922eda85bda16f3f1fd"
+  },
+  "selected_cells": [
+    "sharegpt-closed-c01"
+  ],
+  "selected_scopes": [
+    "comparison"
+  ],
+  "dataset_sha256": {
+    "datasets/prepared/sharegpt/sharegpt-fixed-128.jsonl": "73f3dee1c18b28af09253d6effb73dfa3b7cdade28eace8dc4b63ebb1c2db33d"
+  },
+  "gpu": "Sun Aug 16 10:10:23 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 580.142                Driver Version: 580.142        CUDA Version: 13.0     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA GB10                    On  |   0000000F:01:00.0  On |                  N/A |\n| N/A   44C    P0             11W /  N/A  | Not Supported          |      5%      Default |\n|                                         |                        |                  N/A |\n+-----------------------------------------+------------------------+----------------------+\n\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|    0   N/A  N/A            5530      G   /usr/lib/xorg/Xorg                      139MiB |\n|    0   N/A  N/A            5603    C+G   ...c/gnome-remote-desktop-daemon        176MiB |\n|    0   N/A  N/A            5683      G   /usr/bin/gnome-shell                    168MiB |\n|    0   N/A  N/A            6209      G   ...exec/xdg-desktop-portal-gnome         25MiB |\n|    0   N/A  N/A            6712      G   ...rack-uuid=3190708988185955192         79MiB |\n|    0   N/A  N/A            7397      G   /usr/bin/nautilus                        37MiB |\n|    0   N/A  N/A            7676      G   ...88185955192 --disable-logging         91MiB |\n+-----------------------------------------------------------------------------------------+",
+  "aiperf_revision": "03c9c6ddc5e6227782e53ded177f1227d332af48",
+  "invocations": [
+    {
+      "started_at": "2026-08-16T02:10:23.664452+00:00",
+      "selected_cells": [
+        "sharegpt-closed-c01"
+      ],
+      "selected_scopes": [
+        "comparison"
+      ],
+      "dry_run": false,
+      "required_prefix_cache_mode": "off",
+      "managed_llama_server": true,
+      "llama_server_command": "/home/<user>/LLM_infra/llama.cpp/build/bin/llama-server --model /home/<user>/LLM_infra/models/gpt-oss-20b-gguf/gpt-oss-20b-MXFP4.gguf --alias openai/gpt-oss-20b --host 127.0.0.1 --port 8080 --n-gpu-layers 99 --flash-attn on --ctx-size 65536 --parallel 16 --kv-unified --no-cache-prompt --cache-ram 0",
+      "vllm_container_command": null
+    }
+  ],
+  "preflight": {
+    "smoke_requests": 10,
+    "model_ids": [
+      "openai/gpt-oss-20b"
+    ],
+    "completed_at": "2026-08-16T02:10:27.402283+00:00"
+  }
+}

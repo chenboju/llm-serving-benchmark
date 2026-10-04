@@ -1,0 +1,32 @@
+name: Bug report
+description: Report a reproducible problem in a script, analysis, or document.
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What happened, and what did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Include OS/WSL, GPU, driver, backend/model revisions, Python, AIPerf, and the exact command.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Logs or result path
+      description: Redact secrets and provide the relevant campaign/cell/repeat path.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: I checked that the report does not include credentials or private dataset content.
+          required: true
+

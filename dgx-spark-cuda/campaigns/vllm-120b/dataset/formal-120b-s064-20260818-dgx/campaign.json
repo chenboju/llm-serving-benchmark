@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "campaign_id": "formal-120b-s064-20260818-dgx",
+  "started_at": "2026-08-18T06:02:46.906778+00:00",
+  "backend": "vllm-120b",
+  "backend_config": {
+    "url": "http://127.0.0.1:18001",
+    "model": "gpt-oss-120b",
+    "tokenizer": "/home/<user>/.cache/huggingface/hub/models--openai--gpt-oss-120b/snapshots/b5c939de8f754692c1647ca79fbf85e8c1e70f8a",
+    "api_key": "EMPTY",
+    "max_model_len": 65536,
+    "max_concurrency": 64,
+    "server_max_num_seqs": 16,
+    "cell_backend": "vllm",
+    "_cell_backend_note": "Cells are tagged with the backend family ('vllm'), not the deployment name. This key lets a second vLLM deployment select the same matrix without duplicating 79 cells. Results still land in results/vllm-120b/ because the run directory uses the deployment name.",
+    "_tokenizer_note": "tokenizer.json, tokenizer_config.json, special_tokens_map.json and chat_template.jinja are byte-identical between the 20B and 120B snapshots (verified 2026-08-18 by sha256). The prepared datasets were bucket-sliced with the 20B tokenizer and are therefore valid here without regeneration; this path points at the 120B snapshot for provenance only.",
+    "deployment": "vllm/vllm-openai@sha256:928dde7d6c19478c9c6ab975fed12e6466f6d9b7cb3695d218e287c0c88ad608 (same image as the 20B campaign); GPT-OSS-120B HF revision b5c939de, quantization mxfp4 via MARLIN MoE backend, TRITON_ATTN; max-model-len=65536, max-num-seqs set per campaign via start_vllm_120b.sh; gpu-memory-utilization=0.85 measured 33.07-35.25 GiB KV pool / 904670-964375 tokens across two identical launches, so the pool varies ~6% run to run because the unified memory is shared with a graphical desktop -- pin it with --kv-cache-memory before the formal campaign. The reported 'maximum concurrency 13.80x' is 904670/65536 and only binds on full-length requests; the whole 79-cell matrix fits, the heaviest cell being rag-*-b016k-c32 at ~532K tokens. Weights+non-torch 66.68 GiB, cold load ~9.7 min.",
+    "_url_note": "start_vllm_120b.sh publishes the container's 8000 on host 18001 so it cannot be confused with the 20B deployment on 18000. The DFlash variant uses 18002."
+  },
+  "llama_server_config": null,
+  "campaign_config": {
+    "name": "gpt-oss-20b-dataset-v1-dgx",
+    "description": "DGX Spark (GB10 Grace Blackwell, ARM64) llama.cpp vs vLLM A/B; shares the RTX 4090 matrix, seed, durations and stability limits so both backends stay comparable across hardware",
+    "seed": 42,
+    "duration_seconds": 300,
+    "warmup_seconds": 30,
+    "profile_runs": 3,
+    "unstable_profile_runs": 5,
+    "confidence_level": 0.95,
+    "profile_run_cooldown_seconds": 30,
+    "p99_min_samples": 1000,
+    "max_error_rate_pct": 1.0,
+    "throughput_cv_limit": 0.1,
+    "p95_ttft_cv_limit": 0.15,
+    "gpu_idle_utilization_pct": 12,
+    "_gpu_idle_utilization_pct_note": "RTX 4090 reference used 5. Raised to 12 on DGX Spark: this host runs a graphical desktop (gnome-remote-desktop-daemon holds the GPU) and an idle vLLM EngineCore still polls, so measured idle utilisation floors at 7-8% and the strict '< threshold' test at line 160 of run_benchmarks.py could never pass. Working utilisation is 94%, so 12 still separates busy from idle. This gates when a run may start; it does not affect what is measured.",
+    "gpu_idle_stable_seconds": 30,
+    "gpu_idle_timeout_seconds": 900,
+    "gpu_idle_fallback_cooldown_seconds": 60,
+    "aiperf_version": "0.12.0",
+    "aiperf_commit": "03c9c6ddc5e6227782e53ded177f1227d332af48"
+  },
+  "required_prefix_cache_mode": "off",
+  "host": {
+    "platform": "linux",
+    "machine": "aarch64",
+    "telemetry_backend": "nvidia-smi"
+  },
+  "environment_manifest": {
+    "path": "/home/<user>/LLM_infra/dgx-spark-cuda/datasets/manifests/environment.json",
+    "sha256": "112fbbdadafe3d983255894c02a75a96ed4c60b859acb5052e626655d22ea10c"
+  },
+  "selected_cells": [
+    "sharegpt-closed-c01",
+    "sharegpt-closed-c02",
+    "sharegpt-closed-c04",
+    "sharegpt-closed-c08",
+    "sharegpt-closed-c16",
+    "sharegpt-closed-c32",
+    "sharegpt-closed-c64"
+  ],
+  "selected_scopes": [
+    "comparison",
+    "vllm_stress"
+  ],
+  "dataset_sha256": {
+    "datasets/prepared/sharegpt/sharegpt-fixed-128.jsonl": "73f3dee1c18b28af09253d6effb73dfa3b7cdade28eace8dc4b63ebb1c2db33d"
+  },
+  "gpu": "Tue Aug 18 14:02:46 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 580.142                Driver Version: 580.142        CUDA Version: 13.0     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA GB10                    On  |   0000000F:01:00.0  On |                  N/A |\n| N/A   44C    P0             10W /  N/A  | Not Supported          |      0%      Default |\n|                                         |                        |                  N/A |\n+-----------------------------------------+------------------------+----------------------+\n\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|    0   N/A  N/A            5530      G   /usr/lib/xorg/Xorg                      189MiB |\n|    0   N/A  N/A            5603    C+G   ...c/gnome-remote-desktop-daemon        176MiB |\n|    0   N/A  N/A            5683      G   /usr/bin/gnome-shell                    225MiB |\n|    0   N/A  N/A            6209      G   ...exec/xdg-desktop-portal-gnome         29MiB |\n|    0   N/A  N/A            7397      G   /usr/bin/nautilus                        41MiB |\n|    0   N/A  N/A            7676      G   ...88185955192 --disable-logging         88MiB |\n|    0   N/A  N/A          331615      G   .../teamviewer/tv_bin/TeamViewer         26MiB |\n|    0   N/A  N/A          344080      G   /usr/share/code/code                     60MiB |\n|    0   N/A  N/A          345309      C   VLLM::EngineCore                      10362... |\n+-----------------------------------------------------------------------------------------+",
+  "aiperf_revision": "03c9c6ddc5e6227782e53ded177f1227d332af48",
+  "invocations": [
+    {
+      "started_at": "2026-08-18T06:02:46.974821+00:00",
+      "selected_cells": [
+        "sharegpt-closed-c01",
+        "sharegpt-closed-c02",
+        "sharegpt-closed-c04",
+        "sharegpt-closed-c08",
+        "sharegpt-closed-c16",
+        "sharegpt-closed-c32",
+        "sharegpt-closed-c64"
+      ],
+      "selected_scopes": [
+        "comparison",
+        "vllm_stress"
+      ],
+      "dry_run": false,
+      "required_prefix_cache_mode": "off",
+      "managed_llama_server": false,
+      "llama_server_command": null,
+      "vllm_container_command": "[\"openai/gpt-oss-120b\",\"--served-model-name\",\"gpt-oss-120b\",\"--host\",\"0.0.0.0\",\"--port\",\"8000\",\"--gpu-memory-utilization\",\"0.85\",\"--max-model-len\",\"65536\",\"--max-num-seqs\",\"64\",\"--no-enable-prefix-caching\"]"
+    }
+  ],
+  "preflight": {
+    "smoke_requests": 10,
+    "model_ids": [
+      "gpt-oss-120b"
+    ],
+    "completed_at": "2026-08-18T06:02:49.003315+00:00"
+  }
+}

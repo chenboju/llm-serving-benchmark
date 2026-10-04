@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "campaign_id": "formal-stress-65k-20260817-dgx",
+  "started_at": "2026-08-17T03:17:11.703906+00:00",
+  "backend": "vllm",
+  "backend_config": {
+    "url": "http://127.0.0.1:18000",
+    "model": "gpt-oss-20b",
+    "tokenizer": "/home/<user>/.cache/huggingface/hub/models--openai--gpt-oss-20b/snapshots/6cee5e81ee83917806bbde320786a8fb61efebee",
+    "api_key": "EMPTY",
+    "max_model_len": 65536,
+    "max_concurrency": 64,
+    "server_max_num_seqs": 16,
+    "deployment": "vllm/vllm-openai@sha256:928dde7d6c19478c9c6ab975fed12e6466f6d9b7cb3695d218e287c0c88ad608 (linux/arm64, tag nightly pulled 2026-08-07, vLLM 0.26.1rc1.dev457+gc810e5ee9, build commit c810e5ee9976ad86b81d1277b53e76d0ee639414); GPT-OSS-20B HF revision 6cee5e81, quantization gpt_oss_mxfp4 via MARLIN MoE backend, TRITON_ATTN; max-model-len=65536, max-num-seqs=16; gpu-memory-utilization=0.70 on 121.7 GiB unified memory, measured KV pool 68.01 GiB / 2790787 tokens (max concurrency 42.58x at 65536) so this host never preempts at the comparison matrix's concurrency<=16, unlike the 24 GB RTX 4090; harmony tokenizer needs o200k_base.tiktoken mounted at TIKTOKEN_ENCODINGS_BASE or chat completions fail with HTTP 500; client load up to concurrency=64",
+    "_url_note": "Host port. The RTX 4090 campaign published the container's 8000 on host 18000; keep that mapping or change this URL to match whatever the DGX container publishes.",
+    "_memory_note": "--gpu-memory-utilization is a fraction of the memory vLLM sees. On GB10 that pool is unified LPDDR5X shared with the host, so the same 0.90 that was safe on a 24 GB discrete 4090 reserves a far larger absolute amount here and starves the OS. Choose it deliberately and record the value in the report."
+  },
+  "llama_server_config": null,
+  "campaign_config": {
+    "name": "gpt-oss-20b-dataset-v1-dgx",
+    "description": "DGX Spark (GB10 Grace Blackwell, ARM64) llama.cpp vs vLLM A/B; shares the RTX 4090 matrix, seed, durations and stability limits so both backends stay comparable across hardware",
+    "seed": 42,
+    "duration_seconds": 300,
+    "warmup_seconds": 30,
+    "profile_runs": 3,
+    "unstable_profile_runs": 5,
+    "confidence_level": 0.95,
+    "profile_run_cooldown_seconds": 30,
+    "p99_min_samples": 1000,
+    "max_error_rate_pct": 1.0,
+    "throughput_cv_limit": 0.1,
+    "p95_ttft_cv_limit": 0.15,
+    "gpu_idle_utilization_pct": 12,
+    "_gpu_idle_utilization_pct_note": "RTX 4090 reference used 5. Raised to 12 on DGX Spark: this host runs a graphical desktop (gnome-remote-desktop-daemon holds the GPU) and an idle vLLM EngineCore still polls, so measured idle utilisation floors at 7-8% and the strict '< threshold' test at line 160 of run_benchmarks.py could never pass. Working utilisation is 94%, so 12 still separates busy from idle. This gates when a run may start; it does not affect what is measured.",
+    "gpu_idle_stable_seconds": 30,
+    "gpu_idle_timeout_seconds": 900,
+    "gpu_idle_fallback_cooldown_seconds": 60,
+    "aiperf_version": "0.12.0",
+    "aiperf_commit": "03c9c6ddc5e6227782e53ded177f1227d332af48"
+  },
+  "required_prefix_cache_mode": "off",
+  "host": {
+    "platform": "linux",
+    "machine": "aarch64",
+    "telemetry_backend": "nvidia-smi"
+  },
+  "environment_manifest": {
+    "path": "/home/<user>/LLM_infra/dgx-spark-cuda/datasets/manifests/environment.json",
+    "sha256": "112fbbdadafe3d983255894c02a75a96ed4c60b859acb5052e626655d22ea10c"
+  },
+  "selected_cells": [
+    "sharegpt-closed-c32",
+    "sharegpt-closed-c64",
+    "sharegpt-open-r16-c64",
+    "sharegpt-open-r32-c64",
+    "sharegpt-natural-r8-c64",
+    "sharegpt-natural-r16-c64",
+    "rag-squad-b001k-c16",
+    "rag-squad-b001k-c32",
+    "rag-squad-b004k-c16",
+    "rag-squad-b004k-c32",
+    "rag-squad-b008k-c16",
+    "rag-squad-b008k-c32",
+    "rag-squad-b016k-c16",
+    "rag-squad-b016k-c32",
+    "rag-hotpotqa-b001k-c16",
+    "rag-hotpotqa-b001k-c32",
+    "rag-hotpotqa-b004k-c16",
+    "rag-hotpotqa-b004k-c32",
+    "rag-hotpotqa-b008k-c16",
+    "rag-hotpotqa-b008k-c32",
+    "rag-hotpotqa-b016k-c16",
+    "rag-hotpotqa-b016k-c32",
+    "ruler-perf-b004k-c08",
+    "ruler-perf-b004k-c16",
+    "ruler-perf-b004k-c32",
+    "ruler-perf-b008k-c08",
+    "ruler-perf-b008k-c16",
+    "ruler-perf-b016k-c04",
+    "ruler-perf-b016k-c08",
+    "ruler-perf-b032k-c04",
+    "prefix-b004k-off-c16",
+    "prefix-b016k-off-c16"
+  ],
+  "selected_scopes": [
+    "vllm_stress"
+  ],
+  "dataset_sha256": {
+    "datasets/prepared/sharegpt/sharegpt-fixed-128.jsonl": "73f3dee1c18b28af09253d6effb73dfa3b7cdade28eace8dc4b63ebb1c2db33d",
+    "datasets/prepared/sharegpt/sharegpt-natural-osl.jsonl": "347e50be2a42d794b974622f8f686d313ce2c13d116cca5a5607586f509dc2d1",
+    "datasets/prepared/rag/squad-1024.jsonl": "bf608364fc2e8a24f4375ebf29c41bb5b6215a742f6de44063a9e61e8818368c",
+    "datasets/prepared/rag/squad-4096.jsonl": "135859c9edc4ce28b4d9519a1f66a252aa8eb1bfbed0aec34893775927c76ffc",
+    "datasets/prepared/rag/squad-8192.jsonl": "5a5c6c569a48cbf2ba1037ed270adb5171c4647343a1e2599c209f474c20f298",
+    "datasets/prepared/rag/squad-16384.jsonl": "e680a76c79e2cdc2cc27bf1adf0ea7b37132ef28177b6301181ad01883b37442",
+    "datasets/prepared/rag/hotpotqa-1024.jsonl": "29090ee3772abcd41eeabd894794446286c5cd2ef76e11ff29c231c81b2638d8",
+    "datasets/prepared/rag/hotpotqa-4096.jsonl": "eb4a1b90f3a743a26bf72d79708b5a1c1a9e4829257cd6752c02f5135fead711",
+    "datasets/prepared/rag/hotpotqa-8192.jsonl": "ed9d4778948db3da955d5d3679f8b6905476fe1fec640140946a2390371b82ed",
+    "datasets/prepared/rag/hotpotqa-16384.jsonl": "5f5f7610bc398f618f19482ea1a404eb9a8d0f6318976e0b27c9ad82ad7ff67c",
+    "datasets/prepared/ruler/ruler-4096.jsonl": "dd7fa351bb6ab432449c28bac799748624431aa7def2988b60aefd8d505404f8",
+    "datasets/prepared/ruler/ruler-8192.jsonl": "886a725f64a095c7df288bc7fd661922a36b021cc1501d9e44ec1a58bd4523b5",
+    "datasets/prepared/ruler/ruler-16384.jsonl": "c21162f61261984fc3d4b29c8d8d48b3466bf61ba841c90dc4bf7fec66d736aa",
+    "datasets/prepared/ruler/ruler-32768.jsonl": "2d93a69199859b065e32ccf3e8a207ed0c903e0318dd6b123100123499e8c39c",
+    "datasets/prepared/prefix/squad-prefix-4096-off.jsonl": "17da05d94400dc6cc5562ffd3975d9f2590d6272fedadace46bd086c906a140a",
+    "datasets/prepared/prefix/squad-prefix-16384-off.jsonl": "0b95cfe12ffa57ae6cd008d87193748c48bced4d3a1288c2979ece85f5906665"
+  },
+  "gpu": "Tue Aug 18 13:06:04 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 580.142                Driver Version: 580.142        CUDA Version: 13.0     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA GB10                    On  |   0000000F:01:00.0  On |                  N/A |\n| N/A   63C    P0             26W /  N/A  | Not Supported          |     96%      Default |\n|                                         |                        |                  N/A |\n+-----------------------------------------+------------------------+----------------------+\n\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|    0   N/A  N/A            5530      G   /usr/lib/xorg/Xorg                      232MiB |\n|    0   N/A  N/A            5603    C+G   ...c/gnome-remote-desktop-daemon        176MiB |\n|    0   N/A  N/A            5683      G   /usr/bin/gnome-shell                    251MiB |\n|    0   N/A  N/A            6209      G   ...exec/xdg-desktop-portal-gnome         29MiB |\n|    0   N/A  N/A            6712      G   ...rack-uuid=3190708988185955192        177MiB |\n|    0   N/A  N/A            7397      G   /usr/bin/nautilus                        41MiB |\n|    0   N/A  N/A            7676      G   ...88185955192 --disable-logging         79MiB |\n|    0   N/A  N/A          111117      G   /usr/share/code/code                     88MiB |\n|    0   N/A  N/A          128495      C   VLLM::EngineCore                      85672MiB |\n|    0   N/A  N/A          331615      G   .../teamviewer/tv_bin/TeamViewer         26MiB |\n+-----------------------------------------------------------------------------------------+",
+  "aiperf_revision": "03c9c6ddc5e6227782e53ded177f1227d332af48",
+  "invocations": [
+    {
+      "started_at": "2026-08-17T03:17:11.750097+00:00",
+      "selected_cells": [
+        "sharegpt-closed-c32",
+        "sharegpt-closed-c64"
+      ],
+      "selected_scopes": [
+        "vllm_stress"
+      ],
+      "dry_run": false,
+      "required_prefix_cache_mode": "off",
+      "managed_llama_server": false,
+      "llama_server_command": null,
+      "vllm_container_command": "[\"openai/gpt-oss-20b\",\"--served-model-name\",\"gpt-oss-20b\",\"--host\",\"0.0.0.0\",\"--port\",\"8000\",\"--gpu-memory-utilization\",\"0.7\",\"--max-model-len\",\"65536\",\"--max-num-seqs\",\"16\",\"--no-enable-prefix-caching\"]"
+    },
+    {
+      "started_at": "2026-08-17T03:57:20.000939+00:00",
+      "selected_cells": [
+        "sharegpt-open-r16-c64",
+        "sharegpt-open-r32-c64"
+      ],
+      "selected_scopes": [
+        "vllm_stress"
+      ],
+      "dry_run": false,
+      "required_prefix_cache_mode": "off",
+      "managed_llama_server": false,
+      "llama_server_command": null,
+      "vllm_container_command": "[\"openai/gpt-oss-20b\",\"--served-model-name\",\"gpt-oss-20b\",\"--host\",\"0.0.0.0\",\"--port\",\"8000\",\"--gpu-memory-utilization\",\"0.7\",\"--max-model-len\",\"65536\",\"--max-num-seqs\",\"16\",\"--no-enable-prefix-caching\"]"
+    },
+    {
+      "started_at": "2026-08-17T04:38:38.980784+00:00",
+      "selected_cells": [
+        "sharegpt-natural-r8-c64",
+        "sharegpt-natural-r16-c64"
+      ],
+      "selected_scopes": [
+        "vllm_stress"
+      ],
+      "dry_run": false,
+      "required_prefix_cache_mode": "off",
+      "managed_llama_server": false,
+      "llama_server_command": null,
+      "vllm_container_command": "[\"openai/gpt-oss-20b\",\"--served-model-name\",\"gpt-oss-20b\",\"--host\",\"0.0.0.0\",\"--port\",\"8000\",\"--gpu-memory-utilization\",\"0.7\",\"--max-model-len\",\"65536\",\"--max-num-seqs\",\"16\",\"--no-enable-prefix-caching\"]"
+    },
+    {
+      "started_at": "2026-08-17T05:25:31.101181+00:00",
+      "selected_cells": [
+        "rag-squad-b001k-c16",
+        "rag-squad-b001k-c32",
+        "rag-squad-b004k-c16",
+        "rag-squad-b004k-c32",
+        "rag-squad-b008k-c16",
+        "rag-squad-b008k-c32",
+        "rag-squad-b016k-c16",
+        "rag-squad-b016k-c32",
+        "rag-hotpotqa-b001k-c16",
+        "rag-hotpotqa-b001k-c32",
+        "rag-hotpotqa-b004k-c16",
+        "rag-hotpotqa-b004k-c32",
+        "rag-hotpotqa-b008k-c16",
+        "rag-hotpotqa-b008k-c32",
+        "rag-hotpotqa-b016k-c16",
+        "rag-hotpotqa-b016k-c32"
+      ],
+      "selected_scopes": [
+        "vllm_stress"
+      ],
+      "dry_run": false,
+      "required_prefix_cache_mode": "off",
+      "managed_llama_server": false,
+      "llama_server_command": null,
+      "vllm_container_command": "[\"openai/gpt-oss-20b\",\"--served-model-name\",\"gpt-oss-20b\",\"--host\",\"0.0.0.0\",\"--port\",\"8000\",\"--gpu-memory-utilization\",\"0.7\",\"--max-model-len\",\"65536\",\"--max-num-seqs\",\"16\",\"--no-enable-prefix-caching\"]"
+    },
+    {
+      "started_at": "2026-08-17T11:02:03.173903+00:00",
+      "selected_cells": [
+        "ruler-perf-b004k-c08",
+        "ruler-perf-b004k-c16",
+        "ruler-perf-b004k-c32",
+        "ruler-perf-b008k-c08",
+        "ruler-perf-b008k-c16",
+        "ruler-perf-b016k-c04",
+        "ruler-perf-b016k-c08",
+        "ruler-perf-b032k-c04"
+      ],
+      "selected_scopes": [
+        "vllm_stress"
+      ],
+      "dry_run": false,
+      "required_prefix_cache_mode": "off",
+      "managed_llama_server": false,
+      "llama_server_command": null,
+      "vllm_container_command": "[\"openai/gpt-oss-20b\",\"--served-model-name\",\"gpt-oss-20b\",\"--host\",\"0.0.0.0\",\"--port\",\"8000\",\"--gpu-memory-utilization\",\"0.7\",\"--max-model-len\",\"65536\",\"--max-num-seqs\",\"16\",\"--no-enable-prefix-caching\"]"
+    },
+    {
+      "started_at": "2026-08-18T05:06:04.557891+00:00",
+      "selected_cells": [
+        "prefix-b004k-off-c16",
+        "prefix-b016k-off-c16"
+      ],
+      "selected_scopes": [
+        "vllm_stress"
+      ],
+      "dry_run": false,
+      "required_prefix_cache_mode": "off",
+      "managed_llama_server": false,
+      "llama_server_command": null,
+      "vllm_container_command": "[\"openai/gpt-oss-20b\",\"--served-model-name\",\"gpt-oss-20b\",\"--host\",\"0.0.0.0\",\"--port\",\"8000\",\"--gpu-memory-utilization\",\"0.7\",\"--max-model-len\",\"65536\",\"--max-num-seqs\",\"16\",\"--no-enable-prefix-caching\"]"
+    }
+  ],
+  "preflight": {
+    "smoke_requests": 10,
+    "model_ids": [
+      "gpt-oss-20b"
+    ],
+    "completed_at": "2026-08-18T05:06:05.264079+00:00"
+  }
+}

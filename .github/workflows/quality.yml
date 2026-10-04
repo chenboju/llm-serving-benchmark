@@ -1,0 +1,26 @@
+name: Quality checks
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile Python sources
+        run: python -m compileall -q scripts rtx4090-wsl2/analysis rtx4090-wsl2/scripts dgx-spark-cuda/scripts dgx-spark-cuda/analysis
+
+      - name: Check shell syntax
+        run: find scripts rtx4090-wsl2/scripts dgx-spark-cuda/scripts -type f -name '*.sh' -print0 | xargs -0 -n1 bash -n
+
